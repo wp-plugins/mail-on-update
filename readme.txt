@@ -2,7 +2,7 @@
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
 Tested up to: 2.5.1
-Stable tag: 1.0 Beta
+Stable tag: 1.1 Beta
 Requires at least: 2.5
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications
 
