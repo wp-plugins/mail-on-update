@@ -29,5 +29,7 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
 
 == Version History ==
 
+* Version 1.1 Beta
+    * Fixed: Blogname was missing
 * Version 1.0 Beta
     * Initial version
