@@ -2,8 +2,8 @@
 /*
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
-Description: Sends an E-Mail if a new version of a plugin is available.
-Version: 1.1 Beta
+Description: Sends an E-Mail to the WordPress Administrator if new versions of plugins are available.
+Version: 1.2
 Author: Sven Kubiak
 Author URI: http://www.svenkubiak.de
 
@@ -53,7 +53,7 @@ class MailOnUpdate {
 	
 	function wpVersionFailed()
 	{
-		echo "<div id='message' class='error fade'><p>".__('Mail On Update requires at least version 2.5 of WordPress.','mail-on-update')."</p></div>";	
+		echo "<div id='message' class='error fade'><p>".__('Mail On Update requires at least WordPress 2.5!','mail-on-update')."</p></div>";	
 	}	
 
 	function checkPlugins()
@@ -62,13 +62,14 @@ class MailOnUpdate {
 		if (time() < get_option('mou_lastchecked') + 43200)
 			return;		
 		
+		//inlcude wordpress update functions
 		@require_once ( ABSPATH . 'wp-admin/includes/update.php' );
 		@require_once ( ABSPATH . 'wp-admin/admin-functions.php' );			
 			
 		//call the wordpress update function
 		wp_update_plugins();		
 			
-		//get list of plugins to update
+		//get a list of plugins to update
 		$current = get_option('update_plugins');
 
 		//are plugin updates available?
@@ -78,9 +79,11 @@ class MailOnUpdate {
 		//get all plugin
 		$plugins = get_plugins();
 		
-		$blogname = get_option('blogname');		
+		//set blogname and siteurl for notification e-mail
+		$blogname = get_option('blogname');
+		$siteurl = 
 
-		//set the message for the notification e-mail
+		//start the message for the notification e-mail
 		$message = sprintf( __('New updates at %1$s','mail-on-update'), $blogname);
 		$message .= "\n\n";
 		
@@ -91,7 +94,11 @@ class MailOnUpdate {
 			$message .= sprintf( __('There is a new version (%1$s) of %2$s available.', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name']);
 			$message .= "\n";
 		}
-	
+		
+		//append siteurl to notfication e-mail
+		$message .= "\n";
+		$message .= $message .= sprintf( __('Update your Plugins at %1$s', 'mail-on-update'), get_option('siteurl')."/wp-admin/plugin.php");
+			
 		//set mail header for notification message
 		$wp_email = 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
 		$from = "From: \"$blogname\" <$wp_email>";	
@@ -100,6 +107,7 @@ class MailOnUpdate {
 		//send e-mail notification to admin email
 		wp_mail(get_option('admin_email'), __('WordPress Plugin Update Notification','mail-on-update'), $message, $headers);
 		
+		//set timestamp of last update check
 		update_option('mou_lastchecked', time());
 	}
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yawasp de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-18 18:14+0100\n"
+"POT-Creation-Date: 2008-06-20 11:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <mail@svenkubiak.de>\n"
 "Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
@@ -18,20 +18,25 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: mail-on-update.php:56
-msgid "Mail On Update requires at least version 2.5 of WordPress."
-msgstr "Mail On Update bentötig mind. die Version 2.5 von WordPres."
+msgid "Mail On Update requires at least WordPress 2.5!"
+msgstr "Mail On Update ben&ouml;tigt mind. WordPress 2.5!"
 
-#: mail-on-update.php:82
+#: mail-on-update.php:87
 #, php-format
 msgid "New updates at %1$s"
 msgstr "Neue Updates auf"
 
-#: mail-on-update.php:91
+#: mail-on-update.php:94
 #, php-format
 msgid "There is a new version (%1$s) of %2$s available."
-msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar."
+msgstr "Eine neue Version (%1$s) von %2$s ist verf&uuml;gbar."
 
-#: mail-on-update.php:101
+#: mail-on-update.php:100
+#, php-format
+msgid "Update your Plugins at %1$s"
+msgstr "Aktualisiere deine Plugins auf"
+
+#: mail-on-update.php:108
 msgid "WordPress Plugin Update Notification"
 msgstr "WordPress Plugin Update Benachrichtigung"
 
