@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to the WordPress Administrator if new versions of plugins are available.
-Version: 1.3
+Version: 1.4
 Author: Sven Kubiak
 Author URI: http://www.svenkubiak.de
 
@@ -58,7 +58,7 @@ class MailOnUpdate {
 
 	function checkPlugins()
 	{			
-		//is last update check more thant 12 hours ago?
+		//is last check more than 12 hours ago?
 		if (time() < get_option('mou_lastchecked') + 43200)
 			return;		
 		
@@ -70,24 +70,24 @@ class MailOnUpdate {
 		wp_update_plugins();		
 			
 		//get a list of plugins to update
-		$current = get_option('update_plugins');
+		$updates = get_option('update_plugins');
 
 		//are plugin updates available?
-		if (empty($current->response))
+		if (empty($updates->response))
 			return; 
 
 		//get all plugin
 		$plugins = get_plugins();
 		
-		//set blogname and siteurl for notification e-mail
+		//set blogname for notification e-mail
 		$blogname = get_option('blogname');
 
-		//start the message for the notification e-mail
-		$message = sprintf( __('New updates at %1$s','mail-on-update'), $blogname);
+		//start message for the notification e-mail
+		$message  = sprintf( __('New updates at %1$s','mail-on-update'), $blogname);
 		$message .= "\n\n";
 		
 		//loop through available plugin updates
-		foreach ($current->response as $pluginfile => $update)
+		foreach ($updates->response as $pluginfile => $update)
 		{
 			//append available updates to notification message
 			$message .= sprintf( __('There is a new version (%1$s) of %2$s available.', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name']);
@@ -96,21 +96,19 @@ class MailOnUpdate {
 		
 		//append siteurl to notfication e-mail
 		$message .= "\n\n";
-		$message .= __('Update your Plugins at', 'mail-on-update');
-		$message .= "\n".get_option('siteurl')."/wp-admin/plugins.php";
+		$message .= __('Update your Plugins at', 'mail-on-update')."\n".get_option('siteurl')."/wp-admin/plugins.php";
 			
 		//set mail header for notification message
-		$wp_email = 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
-		$from = "From: \"$blogname\" <$wp_email>";	
-		$headers = "$from\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
+		$sender 	= 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
+		$from 		= "From: \"$blogname\" <$sender>";	
+		$headers 	= "$from\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
 		
-		//send e-mail notification to admin email
+		//send e-mail notification to admin
 		wp_mail(get_option('admin_email'), __('WordPress Plugin Update Notification','mail-on-update'), $message, $headers);
 		
 		//set timestamp of last update check
 		update_option('mou_lastchecked', time());
 	}
-
 }
 //initallze class
 if (class_exists('MailOnUpdate'))

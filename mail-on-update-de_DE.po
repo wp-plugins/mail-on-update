@@ -29,10 +29,9 @@ msgstr "Neue Updates auf"
 #: mail-on-update.php:93
 #, php-format
 msgid "There is a new version (%1$s) of %2$s available."
-msgstr "Eine neue Version (%1$s) von %2$s ist verf&uuml;gbar."
+msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar."
 
 #: mail-on-update.php:99
-#, fuzzy
 msgid "Update your Plugins at"
 msgstr "Aktualisiere deine Plugins auf"
 

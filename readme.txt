@@ -2,7 +2,7 @@
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
 Tested up to: 2.5.1
-Stable tag: 1.3
+Stable tag: 1.4
 Requires at least: 2.5
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications
 
@@ -29,8 +29,10 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
 
 == Version History ==
 
+* Version 1.4
+	* Minor code cleanup
 * Version 1.3
-	* Fixe bug in E-Mail Notification
+	* Fixed bug in E-Mail Notification
 * Version 1.2
 	* Stable Release
     * Minor code cleanup
