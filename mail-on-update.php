@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to the WordPress Administrator if new versions of plugins are available.
-Version: 1.4
+Version: 1.5
 Author: Sven Kubiak
 Author URI: http://www.svenkubiak.de
 
@@ -83,9 +83,8 @@ class MailOnUpdate {
 		$blogname = get_option('blogname');
 
 		//start message for the notification e-mail
-		$message  = sprintf( __('New updates at %1$s','mail-on-update'), $blogname);
-		$message .= "\n\n";
-		
+		$message  = '';
+				
 		//loop through available plugin updates
 		foreach ($updates->response as $pluginfile => $update)
 		{

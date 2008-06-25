@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yawasp de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-23 09:20+0100\n"
+"POT-Creation-Date: 2008-06-25 08:22+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <mail@svenkubiak.de>\n"
 "Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
@@ -21,24 +21,21 @@ msgstr ""
 msgid "Mail On Update requires at least WordPress 2.5!"
 msgstr "Mail On Update ben&ouml;tigt mind. WordPress 2.5!"
 
-#: mail-on-update.php:86
-#, php-format
-msgid "New updates at %1$s"
-msgstr "Neue Updates auf"
-
-#: mail-on-update.php:93
+#: mail-on-update.php:92
 #, php-format
 msgid "There is a new version (%1$s) of %2$s available."
 msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar."
 
-#: mail-on-update.php:99
+#: mail-on-update.php:98
 msgid "Update your Plugins at"
 msgstr "Aktualisiere deine Plugins auf"
 
-#: mail-on-update.php:108
+#: mail-on-update.php:106
 msgid "WordPress Plugin Update Notification"
 msgstr "WordPress Plugin Update Benachrichtigung"
 
+#~ msgid "New updates at %1$s"
+#~ msgstr "Neue Updates auf"
 #~ msgid "Required functions for Mail On Update could not be loaded."
 #~ msgstr ""
 #~ "Benötigte Funktionen für Mail On Update konnten nicht geladen werden."
