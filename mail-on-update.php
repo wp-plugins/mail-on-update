@@ -37,18 +37,22 @@ class MailOnUpdate {
 		//is wordpress at least version 2.5?
 		if (!MOUISWP25){
 			add_action('admin_notices', array(&$this, 'wpVersionFailed'));
-			return;
+			return false;
 		}			
-	
+		
+		add_action('wp_footer', array(&$this, 'checkPlugins'));
+		add_action('activate_mail-on-update/mail-on-update.php', array(&$this, 'activate'));
+		add_action('deactivate_mail-on-update/mail-on-update.php', array(&$this, 'deactivate'));
+		add_action('admin_menu', array(&$this, 'mailonupdateAdminMenu'));
+	}
+
+	function activate()
+	{
 		add_option('mou_lastchecked', 0, '', 'yes');
 		add_option('mailonupdate_mailto', '', '', 'yes');
 		add_option('mailonupdate_exclinact', '', '', 'yes');
 		add_option('mailonupdate_filtermethod', '', '', 'yes');
-		add_option('mailonupdate_filter', '', '', 'yes');
-		
-		add_action('wp_footer', array(&$this, 'checkPlugins'));
-		add_action('deactivate_mail-on-update/mail-on-update.php', array(&$this, 'deactivate'));
-		add_action('admin_menu', array(&$this, 'mailonupdateAdminMenu'));
+		add_option('mailonupdate_filter', '', '', 'yes');			
 	}
 	
 	function deactivate()
@@ -83,7 +87,7 @@ class MailOnUpdate {
 
 		//are plugin updates available?
 		if (empty($updates->response))
-			return; 
+			return false; 
 
 		//get all plugin
 		$plugins = get_plugins();
@@ -274,8 +278,8 @@ class MailOnUpdate {
 			<textarea id="mailonupdate_mailto" name="mailonupdate_mailto" cols="40" rows="5"><?php echo get_option('mailonupdate_mailto'); ?></textarea>
 			</td>
 			<td align="left" valign="top">
-			<?php echo __('* Each E-Mail-ddress has to appear on a single line', 'mail-on-update'); ?><br />
-			<?php echo __('* Invalid addresses are rejected', 'mail-on-update'); ?><br />
+			<?php echo __('* Each E-Mail-Address has to appear on a single line', 'mail-on-update'); ?><br />
+			<?php echo __('* Invalid E-Mail-Addresses will be rejected', 'mail-on-update'); ?><br />
 	        <?php echo __('* An E-Mail-Address with "-" at the end is not considered', 'mail-on-update'); ?><br />
 			<?php echo __('* Clear this field to set the default E-Mail-Address<br />', 'mail-on-update'); ?>
 			</td>
@@ -293,8 +297,8 @@ class MailOnUpdate {
 			<textarea id="mailonupdate_filter" name="mailonupdate_filter" cols="40" rows="5"><?php echo get_option('mailonupdate_filter'); ?></textarea>
 			</td>
 			<td align="left" valign="top">
-			<?php echo __('* A filter has to appear on a single line', 'mail-on-update'); ?><br />
 			<?php echo __('* A plugin is matched if the filter is a substring', 'mail-on-update'); ?><br />
+			<?php echo __('* A filter has to appear on a single line', 'mail-on-update'); ?><br />
 			<?php echo __('* A filter is not case sensetive', 'mail-on-update'); ?><br />
 			<?php echo __('* A filter is considered as a string and no regexp', 'mail-on-update'); ?><br />		
 			<?php echo __('* A filter with "-" at the end is not considered', 'mail-on-update'); ?>
