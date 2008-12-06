@@ -44,14 +44,16 @@ class MailOnUpdate {
 		add_option('mailonupdate_mailto', 0, '', 'yes');
 		add_option('mailonupdate_exclinact', 0, '', 'yes');
 		
-		add_action('admin_menu', array(&$this, 'mailonupdate_config_page'));
 		add_action('wp_footer', array(&$this, 'checkPlugins'));
 		add_action('deactivate_mail-on-update/mail-on-update.php', array(&$this, 'deactivate'));
+		add_action('admin_menu', array(&$this, 'mailonupdateAdminMenu'));
 	}
 	
 	function deactivate()
 	{
-		delete_option('mou_lastchecked');			
+		delete_option('mou_lastchecked');
+		delete_option('mailonupdate_mailto');
+		delete_option('mailonupdate_exclinact');			
 	}
 	
 	function wpVersionFailed()
@@ -89,29 +91,22 @@ class MailOnUpdate {
 		$message  = '';
 				
 		//loop through available plugin updates
-		//my stuff start
 		$pluginNotVaildated = '';
-		//my stuff stop
 
 		foreach ($updates->response as $pluginfile => $update)
-		{
-			//my stuff start	
+		{	
 			if (mailonupdate_pqual($plugins[$pluginfile]['Name'], $pluginfile))
 			{
-			//my stuff stop
 
-			//append available updates to notification message
-			$message .= sprintf( __('There is a new version (%1$s) of %2$s available.', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name']);
-			$message .= "\n";
-
-			//my stuff start
+				//append available updates to notification message
+				$message .= sprintf( __('There is a new version (%1$s) of %2$s available.', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name']);
+				$message .= "\n";
 			}
 			else
 			{	
-			if (is_plugin_active($pluginfile)) { $act='(active)'; } else { $act='inactive';};	
-			$pluginNotVaildated .= "\n".sprintf( __('There is a new version (%1$s) of %2$s available. (%3)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);;
+				if (is_plugin_active($pluginfile)) { $act='(active)'; } else { $act='inactive';};	
+				$pluginNotVaildated .= "\n".sprintf( __('There is a new version (%1$s) of %2$s available. (%3)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);;
 			};
-			//my stuff stop
 		}
 
 		if ($message!='')
@@ -120,11 +115,9 @@ class MailOnUpdate {
 			$message .= "\n\n";
 			$message .= __('Update your Plugins at', 'mail-on-update')."\n".get_option('siteurl')."/wp-admin/plugins.php";
 	
-			//my stuff start
 			if ($pluginNotVaildated!='') {
 				$message.= "\n\n".__('There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness.', 'mail-on-update')."\n".$pluginNotVaildated;
-				};
-			//my stuff stop
+			};
 			
 			//set mail header for notification message
 			$sender 	= 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
@@ -142,7 +135,7 @@ class MailOnUpdate {
 	}
 	
 
-	function mailonupdate_config_page()
+	function mailonupdateAdminMenu()
 	{
 		add_options_page('Mail On Update', 'Mail On Update', 8, 'mail on update', array(&$this, 'mailonupdateConf'));           
 	}
