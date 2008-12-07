@@ -66,7 +66,7 @@ class MailOnUpdate {
 	
 	function wpVersionFailed()
 	{
-		echo "<div id='message' class='error fade'><p>".__('Mail On Update requires at least WordPress 2.5!','mail-on-update')."</p></div>";	
+		echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least to WordPress 2.5!','mail-on-update')."</p></div>";	
 	}	
 
 	function checkPlugins()
