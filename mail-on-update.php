@@ -24,7 +24,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 global $wp_version;
-define('MOUISWP25', version_compare($wp_version, '2.5', '>='));
+define('MOUISWP26', version_compare($wp_version, '2.6', '>='));
 
 class MailOnUpdate {
 
@@ -66,7 +66,7 @@ class MailOnUpdate {
 	
 	function wpVersionFailed()
 	{
-		echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least to WordPress 2.5!','mail-on-update')."</p></div>";	
+		echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least to WordPress 2.6.','mail-on-update')."</p></div>";	
 	}	
 
 	function checkPlugins()
@@ -250,7 +250,7 @@ class MailOnUpdate {
 				update_option( 'mailonupdate_exclinact', $_POST['mailonupdate_exclinact'] );
 			};
 			
-			echo '<div id="message" class="updated fade"><p><strong>'. __('Mail On Update options saved.', 'mail-on-update') .'</strong></p></div>';
+			echo '<div id="message" class="updated fade"><p><strong>'. __('Mail On Update settings succsesfully saved.', 'mail-on-update') .'</strong></p></div>';
 		};
 		
 		?>
@@ -263,9 +263,11 @@ class MailOnUpdate {
 			<p>  
 			<?php
 			
-			echo __('Since no alternative recipients are specified, the default address ', 'mail-on-update').'<b>'
-			.get_option("admin_email").'</b>'.__(' is assumed. Provide a list of alternative recipients to override.', 'mail-on-update');
-			
+			printf('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
+				, '<b>'.get_option("admin_email").'</b>'
+				, 'mail-on-update'
+			);
+
 			?>
 				
 			</p>
@@ -281,7 +283,7 @@ class MailOnUpdate {
 			<?php echo __('* Each E-Mail-Address has to appear on a single line', 'mail-on-update'); ?><br />
 			<?php echo __('* Invalid E-Mail-Addresses will be rejected', 'mail-on-update'); ?><br />
 	        <?php echo __('* An E-Mail-Address with "-" at the end is not considered', 'mail-on-update'); ?><br />
-			<?php echo __('* Clear this field to set the default E-Mail-Address<br />', 'mail-on-update'); ?>
+			<?php echo __('* Clear this field to set the default E-Mail-Address', 'mail-on-update'); ?>
 			</td>
 			</tr>
 			</table>

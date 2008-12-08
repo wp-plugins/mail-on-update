@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yawasp de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-25 08:22+0100\n"
+"POT-Creation-Date: 2008-12-08 14:56+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <mail@svenkubiak.de>\n"
 "Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
@@ -17,31 +17,129 @@ msgstr ""
 "X-Poedit-Basepath: ./\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: mail-on-update.php:56
-msgid "Mail On Update requires at least WordPress 2.5!"
-msgstr "Mail On Update ben&ouml;tigt mind. WordPress 2.5!"
+#: mail-on-update.php:69
+msgid "Your WordPress is to old. Mail On Update requires at least to WordPress 2.6."
+msgstr "Mail On Update ben&ouml;tigt mind. WordPress 2.6."
 
-#: mail-on-update.php:92
+#: mail-on-update.php:110
 #, php-format
 msgid "There is a new version (%1$s) of %2$s available."
 msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar."
 
-#: mail-on-update.php:98
+#: mail-on-update.php:116
+msgid "There is a new version (%1$s) of %2$s available. (%3)"
+msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar. (%3)"
+
+#: mail-on-update.php:124
 msgid "Update your Plugins at"
 msgstr "Aktualisiere deine Plugins auf"
 
-#: mail-on-update.php:106
+#: mail-on-update.php:127
+msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
+msgstr "Für die unten aufgeführten Plugins gibt es ebenfalls Aktualisiereungen. Diese werden allerdings nur der Vollständigkeit angezeigt, da sie inaktiv sind oder gefiltert werden."
+
+#: mail-on-update.php:136
 msgid "WordPress Plugin Update Notification"
 msgstr "WordPress Plugin Update Benachrichtigung"
+
+#: mail-on-update.php:241
+msgid "Sorry, but you have no permissions to change settings."
+msgstr "Sorry, aber Du hast keine Berechtigung um Einstellungen zu &auml;ndern."
+
+#: mail-on-update.php:253
+msgid "Mail On Update settings succsesfully saved."
+msgstr "Mail On Update Einstellungen erfolgreich gespeichert."
+
+#: mail-on-update.php:259
+msgid "Mail On Update"
+msgstr "Mail On Update"
+
+#: mail-on-update.php:277
+msgid "List of alternative recipients:"
+msgstr "Liste alternative Empfänger:"
+
+#: mail-on-update.php:283
+msgid "* Each E-Mail-Address has to appear on a single line"
+msgstr "* Jede E-Mail-Adresse muss in einer Zeile eingegeben werden"
+
+#: mail-on-update.php:284
+msgid "* Invalid E-Mail-Addresses will be rejected"
+msgstr "* Ungültige E-Mail-Adressen werden abgelehnt"
+
+#: mail-on-update.php:285
+msgid "* An E-Mail-Address with \"-\" at the end is not considered"
+msgstr "* Eine E-Mail-Adresse mit \"-\" am Ende wird nicht berücksichtigt"
+
+#: mail-on-update.php:286
+msgid "* Clear this field to set the default E-Mail-Address"
+msgstr "* Lösche dieses Feld um die Standard E-Mail-Adresse zu verwenden"
+
+#: mail-on-update.php:290
+#: mail-on-update.php:319
+msgid "Save"
+msgstr "Speichern"
+
+#: mail-on-update.php:296
+msgid "Filters:"
+msgstr "Filter:"
+
+#: mail-on-update.php:302
+msgid "* A plugin is matched if the filter is a substring"
+msgstr "* Ein Plugin wird berücksichtig, wenn der Filter ein Teilstring ist"
+
+#: mail-on-update.php:303
+msgid "* A filter has to appear on a single line"
+msgstr "* Ein Filter muss in einer Zeile eingeben werden"
+
+#: mail-on-update.php:304
+msgid "* A filter is not case sensetive"
+msgstr "* Ein Filter ist nicht case-sensitiv"
+
+#: mail-on-update.php:305
+msgid "* A filter is considered as a string and no regexp"
+msgstr "* Eine Filter wird als String und nicht als Refexp berücksichtigt"
+
+#: mail-on-update.php:306
+msgid "* A filter with \"-\" at the end is not considered"
+msgstr "* Ein FIlter mit \"-\" am Ende wird nicht berücksichtigt"
+
+#: mail-on-update.php:312
+msgid "Don't filter plugins"
+msgstr "Plugins nicht filtern"
+
+#: mail-on-update.php:313
+msgid "Blacklist filter (exclude plugins)"
+msgstr "Blacklist Filter (Plugins ausschliessen)"
+
+#: mail-on-update.php:314
+msgid "Whitelist filter (include plugins)"
+msgstr "Whitelist Filter (Plugins einbeziehen)"
+
+#: mail-on-update.php:315
+msgid "Don't validate inactive plugins"
+msgstr "Inaktive Plugins nicht validieren"
+
+#: mail-on-update.php:324
+msgid "Plugins to validate:"
+msgstr "Zu validieren Plugins:"
+
+#: mail-on-update.php:330
+msgid "Plugin will be validated"
+msgstr "Plugin wird validiert"
+
+#: mail-on-update.php:331
+msgid "Plugin will not be validated"
+msgstr "Plugin wird nicht validiert"
+
+#: mail-on-update.php:332
+msgid "Inactive plugin"
+msgstr "Inaktives Plugin"
 
 #~ msgid "New updates at %1$s"
 #~ msgstr "Neue Updates auf"
 #~ msgid "Required functions for Mail On Update could not be loaded."
 #~ msgstr ""
 #~ "Benötigte Funktionen für Mail On Update konnten nicht geladen werden."
-#~ msgid "Sorry, but you have no permission to change settings."
-#~ msgstr ""
-#~ "Sorry, aber Du hast keine Berechtigung um Einstellungen zu &auml;ndern."
 #~ msgid "The E-mail Address is not valid."
 #~ msgstr "Die E-Mail Adresse ist nicht gültig."
 #~ msgid "Saved changes successfully."
@@ -50,8 +148,6 @@ msgstr "WordPress Plugin Update Benachrichtigung"
 #~ msgstr "E-Mail Einstellungen"
 #~ msgid "Recipient"
 #~ msgstr "Empfänger"
-#~ msgid "Save"
-#~ msgstr "Speichern"
 #~ msgid "Sorry, but it seems you are a Spambot."
 #~ msgstr "Sorry, aber es scheint so, als ob Du ein Spambot bist."
 #~ msgid "YAWASP settings were saved successfully."
