@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
-Version: 2.0
+Version: 2.1
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -263,7 +263,7 @@ class MailOnUpdate {
 			<p>  
 			<?php
 			
-			printf('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
+			sprintf __('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
 				, '<b>'.get_option("admin_email").'</b>'
 				, 'mail-on-update'
 			);

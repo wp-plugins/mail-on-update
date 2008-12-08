@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yawasp de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-08 14:56+0100\n"
+"POT-Creation-Date: 2008-12-08 16:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <mail@svenkubiak.de>\n"
 "Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
@@ -54,6 +54,11 @@ msgstr "Mail On Update Einstellungen erfolgreich gespeichert."
 msgid "Mail On Update"
 msgstr "Mail On Update"
 
+#: mail-on-update.php:266
+#, php-format
+msgid "Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override."
+msgstr "Da keine E-Mail-Adresse angegeben ist, wird die Grundeinstellung %s angenommen. Alternative Empfänger überschreiben die Voreinstellung. "
+
 #: mail-on-update.php:277
 msgid "List of alternative recipients:"
 msgstr "Liste alternative Empfänger:"
@@ -72,7 +77,7 @@ msgstr "* Eine E-Mail-Adresse mit \"-\" am Ende wird nicht berücksichtigt"
 
 #: mail-on-update.php:286
 msgid "* Clear this field to set the default E-Mail-Address"
-msgstr "* Lösche dieses Feld um die Standard E-Mail-Adresse zu verwenden"
+msgstr "* Lösche dieses Feld, um die Standard E-Mail-Adresse zu verwenden"
 
 #: mail-on-update.php:290
 #: mail-on-update.php:319
@@ -85,11 +90,11 @@ msgstr "Filter:"
 
 #: mail-on-update.php:302
 msgid "* A plugin is matched if the filter is a substring"
-msgstr "* Ein Plugin wird berücksichtig, wenn der Filter ein Teilstring ist"
+msgstr "* Ein Plugin wird berücksichtigt, wenn der Filter ein Teilstring ist"
 
 #: mail-on-update.php:303
 msgid "* A filter has to appear on a single line"
-msgstr "* Ein Filter muss in einer Zeile eingeben werden"
+msgstr "* Ein Filter muss in einer Zeile eingegeben werden"
 
 #: mail-on-update.php:304
 msgid "* A filter is not case sensetive"
@@ -97,11 +102,11 @@ msgstr "* Ein Filter ist nicht case-sensitiv"
 
 #: mail-on-update.php:305
 msgid "* A filter is considered as a string and no regexp"
-msgstr "* Eine Filter wird als String und nicht als Refexp berücksichtigt"
+msgstr "* Eine Filter wird als String und nicht als Regexp berücksichtigt"
 
 #: mail-on-update.php:306
 msgid "* A filter with \"-\" at the end is not considered"
-msgstr "* Ein FIlter mit \"-\" am Ende wird nicht berücksichtigt"
+msgstr "* Ein Filter mit \"-\" am Ende wird nicht berücksichtigt"
 
 #: mail-on-update.php:312
 msgid "Don't filter plugins"
@@ -109,7 +114,7 @@ msgstr "Plugins nicht filtern"
 
 #: mail-on-update.php:313
 msgid "Blacklist filter (exclude plugins)"
-msgstr "Blacklist Filter (Plugins ausschliessen)"
+msgstr "Blacklist Filter (Plugins ausschlie&szlig;en)"
 
 #: mail-on-update.php:314
 msgid "Whitelist filter (include plugins)"
@@ -121,7 +126,7 @@ msgstr "Inaktive Plugins nicht validieren"
 
 #: mail-on-update.php:324
 msgid "Plugins to validate:"
-msgstr "Zu validieren Plugins:"
+msgstr "Zu validierende Plugins:"
 
 #: mail-on-update.php:330
 msgid "Plugin will be validated"
