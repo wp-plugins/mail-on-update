@@ -263,10 +263,10 @@ class MailOnUpdate {
 			<p>  
 			<?php
 			
-			sprintf __('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
+			sprintf (__('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
 				, '<b>'.get_option("admin_email").'</b>'
 				, 'mail-on-update'
-			);
+			));
 
 			?>
 				
@@ -289,7 +289,6 @@ class MailOnUpdate {
 			</table>
 			<p class="submit"><input type="submit" name="submit" value="<?php echo __('Save', 'mail-on-update'); ?>" /></p>
 		</form>
-		</p>
 		<p>
 		<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
 			<table class="form-table">
