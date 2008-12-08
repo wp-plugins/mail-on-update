@@ -61,7 +61,7 @@ msgstr "Da keine E-Mail-Adresse angegeben ist, wird die Grundeinstellung %s ange
 
 #: mail-on-update.php:277
 msgid "List of alternative recipients:"
-msgstr "Liste alternative Empfänger:"
+msgstr "Liste alternativer Empfänger:"
 
 #: mail-on-update.php:283
 msgid "* Each E-Mail-Address has to appear on a single line"
