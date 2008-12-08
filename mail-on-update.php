@@ -306,7 +306,7 @@ class MailOnUpdate {
 			</td>
 			</tr>
 			<tr>
-			<td align="left" valign="top">
+			<td align="left" valign="top" colspan="2">
 			<?php $rval=$this->rbc('mailonupdate_filtermethod','nolist blacklist whitelist','nolist'); ?>
 	                <input type="radio" name="mailonupdate_filtermethod" value="nolist" <?php print $rval['nolist']; ?>" /> <?php echo __('Don\'t filter plugins', 'mail-on-update'); ?><br />
 	                <input type="radio" name="mailonupdate_filtermethod" value="blacklist" <?php print $rval['blacklist']; ?>" /> <?php echo __('Blacklist filter (exclude plugins)', 'mail-on-update'); ?><br />
