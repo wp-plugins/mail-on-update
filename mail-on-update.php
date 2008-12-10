@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
-Version: 2.2
+Version: 2.3
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -73,7 +73,7 @@ class MailOnUpdate {
 	{			
 		//is last check more than 12 hours ago?
 		if (time() < get_option('mou_lastchecked') + 43200)
-			return;
+			return false;
 		
 		//inlcude wordpress update functions
 		@require_once ( ABSPATH . 'wp-admin/includes/update.php' );
@@ -103,7 +103,7 @@ class MailOnUpdate {
 
 		foreach ($updates->response as $pluginfile => $update)
 		{	
-			if (mailonupdate_pqual($plugins[$pluginfile]['Name'], $pluginfile))
+			if ($this->mailonupdate_pqual($plugins[$pluginfile]['Name'], $pluginfile))
 			{
 
 				//append available updates to notification message
@@ -133,7 +133,7 @@ class MailOnUpdate {
 			$headers 	= "$from\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
 			
 			//send e-mail notification to admin or multiple recipienes
-			wp_mail(mailonupdate_listOfCommaSeparatedRecipients(), __('WordPress Plugin Update Notification','mail-on-update'), $message, $headers);	
+			wp_mail($this->mailonupdate_listOfCommaSeparatedRecipients(), __('WordPress Plugin Update Notification','mail-on-update'), $message, $headers);	
 
 		};
 		
@@ -169,7 +169,7 @@ class MailOnUpdate {
 	//notifier list
 	function mailonupdate_listOfCommaSeparatedRecipients()
 	{
-		$list=mailonupdate_validateRecipient(get_option('mailonupdate_mailto'),',');
+		$list=$this->mailonupdate_validateRecipient(get_option('mailonupdate_mailto'),',');
 	
 		if ("$list" !=''){
 			return $list;
