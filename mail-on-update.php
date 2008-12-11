@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
-Version: 2.3
+Version: 2.4
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -112,8 +112,8 @@ class MailOnUpdate {
 			}
 			else
 			{	
-				if (is_plugin_active($pluginfile)) { $act='(active)'; } else { $act='inactive';};	
-				$pluginNotVaildated .= "\n".sprintf( __('There is a new version (%1$s) of %2$s available. (%3)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);;
+				if (is_plugin_active($pluginfile)) { $act='active'; } else { $act='inactive';};	
+				$pluginNotVaildated .= "\n".sprintf( __('There is a new version (%1$s) of %2$s available. (%3s)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);;
 			};
 		}
 
@@ -154,7 +154,7 @@ class MailOnUpdate {
 		$hit=0;
 		foreach (split("\n",$maillist) as $imail) {
 			$mail=trim($imail);	
-			if ( preg_match("/^[a-zŠšŸA-Z€…†0-9_.-]+@[a-zŠšŸA-Z€…†0-9-]+.[a-zŠšŸA-Z€…†0-9-.]+\-{0,1}$/",$mail) ) {
+			if ( preg_match("/^[a-z&auml;&ouml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9_.-]+@[a-z&auml;&ouml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9-]+.[a-z&auml;&auml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9-.]+\-{0,1}$/",$mail) ) {
 				if ($sep=="\n" || substr($mail,-1)!='-' ) {
 					if ($hit>0) {$nmaillist.=$sep;};
 						$nmaillist.=$mail;
@@ -263,10 +263,11 @@ class MailOnUpdate {
 			<p>  
 			<?php
 			
-			sprintf (__('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
-				, '<b>'.get_option("admin_email").'</b>'
-				, 'mail-on-update'
-			));
+			printf (__('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
+				,'mail-on-update')
+            	, '<b>'.get_option("admin_email").'</b>'
+            );
+			
 
 			?>
 				

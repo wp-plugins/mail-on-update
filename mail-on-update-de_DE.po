@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yawasp de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-08 16:45+0100\n"
+"POT-Creation-Date: 2008-12-11 08:24+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <mail@svenkubiak.de>\n"
 "Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
@@ -24,11 +24,12 @@ msgstr "Mail On Update ben&ouml;tigt mind. WordPress 2.6."
 #: mail-on-update.php:110
 #, php-format
 msgid "There is a new version (%1$s) of %2$s available."
-msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar."
+msgstr "Eine neue Version (%1$s) von %2$s ist verf&uuml;gbar."
 
 #: mail-on-update.php:116
-msgid "There is a new version (%1$s) of %2$s available. (%3)"
-msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar. (%3)"
+#, php-format
+msgid "There is a new version (%1$s) of %2$s available. (%3s)"
+msgstr "Eine neue Version (%1$s) von %2$s ist verf&uuml;gbar. (%3s)"
 
 #: mail-on-update.php:124
 msgid "Update your Plugins at"
@@ -36,7 +37,7 @@ msgstr "Aktualisiere deine Plugins auf"
 
 #: mail-on-update.php:127
 msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
-msgstr "Für die unten aufgeführten Plugins gibt es ebenfalls Aktualisiereungen. Diese werden allerdings nur der Vollständigkeit angezeigt, da sie inaktiv sind oder gefiltert werden."
+msgstr "Für die unten aufgef&uuml;hrten Plugins gibt es ebenfalls Aktualisiereungen. Diese werden allerdings nur der Vollst&auml;ndigkeit angezeigt, da sie inaktiv sind oder gefiltert werden."
 
 #: mail-on-update.php:136
 msgid "WordPress Plugin Update Notification"
@@ -57,29 +58,29 @@ msgstr "Mail On Update"
 #: mail-on-update.php:266
 #, php-format
 msgid "Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override."
-msgstr "Da keine E-Mail-Adresse angegeben ist, wird die Grundeinstellung %s angenommen. Alternative Empfänger überschreiben die Voreinstellung. "
+msgstr "Da keine E-Mail-Adresse angegeben ist, wird die Grundeinstellung %s angenommen. Alternative Empf&auml;nger &uuml;berschreiben die Voreinstellung. "
 
-#: mail-on-update.php:277
+#: mail-on-update.php:278
 msgid "List of alternative recipients:"
-msgstr "Liste alternativer Empfänger:"
+msgstr "Liste alternativer Empf&auml;nger:"
 
-#: mail-on-update.php:283
+#: mail-on-update.php:284
 msgid "* Each E-Mail-Address has to appear on a single line"
 msgstr "* Jede E-Mail-Adresse muss in einer Zeile eingegeben werden"
 
-#: mail-on-update.php:284
+#: mail-on-update.php:285
 msgid "* Invalid E-Mail-Addresses will be rejected"
 msgstr "* Ungültige E-Mail-Adressen werden abgelehnt"
 
-#: mail-on-update.php:285
-msgid "* An E-Mail-Address with \"-\" at the end is not considered"
-msgstr "* Eine E-Mail-Adresse mit \"-\" am Ende wird nicht berücksichtigt"
-
 #: mail-on-update.php:286
+msgid "* An E-Mail-Address with \"-\" at the end is not considered"
+msgstr "* Eine E-Mail-Adresse mit \"-\" am Ende wird nicht ber&uuml;cksichtigt"
+
+#: mail-on-update.php:287
 msgid "* Clear this field to set the default E-Mail-Address"
 msgstr "* Lösche dieses Feld, um die Standard E-Mail-Adresse zu verwenden"
 
-#: mail-on-update.php:290
+#: mail-on-update.php:291
 #: mail-on-update.php:319
 msgid "Save"
 msgstr "Speichern"
@@ -90,7 +91,7 @@ msgstr "Filter:"
 
 #: mail-on-update.php:302
 msgid "* A plugin is matched if the filter is a substring"
-msgstr "* Ein Plugin wird berücksichtigt, wenn der Filter ein Teilstring ist"
+msgstr "* Ein Plugin wird ber&uuml;cksichtigt, wenn der Filter ein Teilstring ist"
 
 #: mail-on-update.php:303
 msgid "* A filter has to appear on a single line"
@@ -124,19 +125,19 @@ msgstr "Whitelist Filter (Plugins einbeziehen)"
 msgid "Don't validate inactive plugins"
 msgstr "Inaktive Plugins nicht validieren"
 
-#: mail-on-update.php:324
+#: mail-on-update.php:323
 msgid "Plugins to validate:"
 msgstr "Zu validierende Plugins:"
 
-#: mail-on-update.php:330
+#: mail-on-update.php:329
 msgid "Plugin will be validated"
 msgstr "Plugin wird validiert"
 
-#: mail-on-update.php:331
+#: mail-on-update.php:330
 msgid "Plugin will not be validated"
 msgstr "Plugin wird nicht validiert"
 
-#: mail-on-update.php:332
+#: mail-on-update.php:331
 msgid "Inactive plugin"
 msgstr "Inaktives Plugin"
 
