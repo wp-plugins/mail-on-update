@@ -256,7 +256,7 @@ class MailOnUpdate {
 		?>
 		
 		<div class="wrap">
-		<h2><?php echo __('Mail On Update', 'mail-on-update'); ?></h2>
+		<h2><?php echo __('Mail On Update Settings', 'mail-on-update'); ?></h2>
 		<p>
 		<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
 		<?php if ($this->mailonupdate_validateRecipient(get_option('mailonupdate_mailto'),',') == '') { ?>

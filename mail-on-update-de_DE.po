@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yawasp de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-12-11 08:24+0100\n"
+"POT-Creation-Date: 2008-12-12 18:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <mail@svenkubiak.de>\n"
 "Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
@@ -52,8 +52,8 @@ msgid "Mail On Update settings succsesfully saved."
 msgstr "Mail On Update Einstellungen erfolgreich gespeichert."
 
 #: mail-on-update.php:259
-msgid "Mail On Update"
-msgstr "Mail On Update"
+msgid "Mail On Update Settings"
+msgstr "Mail On Update Einstellungen"
 
 #: mail-on-update.php:266
 #, php-format
