@@ -24,12 +24,12 @@ msgstr "Mail On Update ben&ouml;tigt mind. WordPress 2.6."
 #: mail-on-update.php:110
 #, php-format
 msgid "There is a new version (%1$s) of %2$s available."
-msgstr "Eine neue Version (%1$s) von %2$s ist verf&uuml;gbar."
+msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar."
 
 #: mail-on-update.php:116
 #, php-format
 msgid "There is a new version (%1$s) of %2$s available. (%3s)"
-msgstr "Eine neue Version (%1$s) von %2$s ist verf&uuml;gbar. (%3s)"
+msgstr "Eine neue Version (%1$s) von %2$s ist verfügbar. (%3s)"
 
 #: mail-on-update.php:124
 msgid "Update your Plugins at"
@@ -37,7 +37,7 @@ msgstr "Aktualisiere deine Plugins auf"
 
 #: mail-on-update.php:127
 msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
-msgstr "Für die unten aufgef&uuml;hrten Plugins gibt es ebenfalls Aktualisiereungen. Diese werden allerdings nur der Vollst&auml;ndigkeit angezeigt, da sie inaktiv sind oder gefiltert werden."
+msgstr "Für die unten aufgeführten Plugins gibt es ebenfalls Aktualisiereungen. Diese werden allerdings nur der Vollständigkeit angezeigt, da sie inaktiv sind oder gefiltert werden."
 
 #: mail-on-update.php:136
 msgid "WordPress Plugin Update Notification"
