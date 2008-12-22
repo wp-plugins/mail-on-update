@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
-Version: 2.4
+Version: 2.5
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -35,7 +35,7 @@ class MailOnUpdate {
 			load_plugin_textdomain('mail-on-update', PLUGINDIR.'/mail-on-update');
 			
 		//is wordpress at least version 2.5?
-		if (!MOUISWP25){
+		if (!MOUISWP26){
 			add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 			return false;
 		}			

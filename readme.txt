@@ -34,6 +34,7 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
 
 * Version 2.5
 	* Fixed Bug with umlaut
+	* Fixed Bug when checke WordPress Version
 * Version 2.4
 	* Fixed Bug when validating E-Mail-Adresses
 	* Fixed Bug with UTF-8 encoding
