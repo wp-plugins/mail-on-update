@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
-Version: 2.5
+Version: 2.6
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -207,10 +207,15 @@ class MailOnUpdate {
 		if ($filtermethod=='whitelist') {$state=false;} else {$state=true;};
 		foreach (split("\n",get_option('mailonupdate_filter')) as $filter) {
 			$filter=trim(strtolower($filter));
-			if (strpos($filter,-1)!='-') {
-				if (!(strpos($plugin,$filter)===false)) {$state=!$state; break;};
-				};
-			};
+			if (!empty($filter)){
+				if (strpos($filter,-1)!='-') {
+					if (!(strpos($plugin,$filter)===false)){
+						$state=!$state;
+						break;					
+					}
+				}
+			}
+		}
 	
 		return $state;
 	}
@@ -221,7 +226,7 @@ class MailOnUpdate {
 		$all_plugins=get_plugins();
 		$del='';
 		foreach( (array)$all_plugins as $plugin_file => $plugin_data) {	
-			$plugin=wp_kses($plugin_data['Title']);
+			$plugin=wp_kses($plugin_data['Title'],array());
 			if ($plugin!="") {
 				if (is_plugin_active($plugin_file)) {$inact='';} else {$inact='-';};
 				if ($this->mailonupdate_pqual($plugin, $plugin_file)) {$flag='[x]';} else {$flag='[ ]';}
