@@ -1,0 +1,140 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Mail On Update v2.5\n"
+"PO-Revision-Date: 2009-01-25 16:15-0500\n"
+"Last-Translator: Li-An <lian00@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;__ngettext_noop:1,2;_c\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-SearchPath-0: ."
+
+#: mail-on-update.php:69
+msgid "Your WordPress is to old. Mail On Update requires at least to WordPress 2.6."
+msgstr "Votre version de Wordpress est trop vieille. Mail On Update nécessite au moins la version 2.6 de Wordpress."
+
+#: mail-on-update.php:110
+#, php-format
+msgid "There is a new version (%1$s) of %2$s available."
+msgstr "Il y a une nouvelle version (%1$s) de %2$s disponible."
+
+#: mail-on-update.php:116
+#, php-format
+msgid "There is a new version (%1$s) of %2$s available. (%3s)"
+msgstr "Il y a une nouvelle version (%1$s) de %2$s disponible. (%3s)"
+
+#: mail-on-update.php:124
+msgid "Update your Plugins at"
+msgstr "Mettez à jour vos plugins sur "
+
+#: mail-on-update.php:127
+msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
+msgstr "Il y a aussi des mises à jour disponibles pour les plugins ci-dessous. Quoiqu'il en soit, ces plugins ne sont pas concernés par cet avertissement et ce message est juste à titre informatif."
+
+#: mail-on-update.php:136
+msgid "WordPress Plugin Update Notification"
+msgstr "Notification de mise à jour d'un plugin Wordpress."
+
+#: mail-on-update.php:241
+msgid "Sorry, but you have no permissions to change settings."
+msgstr "Désolé mais vous n'avez pas l'autorisation de modifier ces réglages."
+
+#: mail-on-update.php:253
+msgid "Mail On Update settings succsesfully saved."
+msgstr "Les réglages de Mail on Update ont été sauvegardés avec succès."
+
+#: mail-on-update.php:259
+msgid "Mail On Update Settings"
+msgstr "Réglages de Mail on Update"
+
+#: mail-on-update.php:266
+#, php-format
+msgid "Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override."
+msgstr "Comme aucun autre destinataire n'a été spécifié, l'adresse par défaut %s est prise en compte. Veuillez fournir une liste de destinataires autres pour modifier ce réglage. "
+
+#: mail-on-update.php:278
+msgid "List of alternative recipients:"
+msgstr "Liste de destinataires autres:"
+
+#: mail-on-update.php:284
+msgid "* Each E-Mail-Address has to appear on a single line"
+msgstr "* Chaque adresse email doit être affichée sur une seule ligne"
+
+#: mail-on-update.php:285
+msgid "* Invalid E-Mail-Addresses will be rejected"
+msgstr "* Les adresses email non valides seront rejetées"
+
+#: mail-on-update.php:286
+msgid "* An E-Mail-Address with \"-\" at the end is not considered"
+msgstr "* Une adresse email avec \"-\" à la fin ne seront pas prises en compte"
+
+#: mail-on-update.php:287
+msgid "* Clear this field to set the default E-Mail-Address"
+msgstr "* Effacer ce champ pour mettre l'adresse email par défaut"
+
+#: mail-on-update.php:291
+#: mail-on-update.php:319
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: mail-on-update.php:296
+msgid "Filters:"
+msgstr "Filtres:"
+
+#: mail-on-update.php:302
+msgid "* A plugin is matched if the filter is a substring"
+msgstr "* Correspond à un plugin si le filtre est une sous-chaîne"
+
+#: mail-on-update.php:303
+msgid "* A filter has to appear on a single line"
+msgstr "* Chaque filtre doit s'afficher sur une seule ligne"
+
+#: mail-on-update.php:304
+msgid "* A filter is not case sensetive"
+msgstr "* Les filtres ne sont pas sensibles à la casse"
+
+#: mail-on-update.php:305
+msgid "* A filter is considered as a string and no regexp"
+msgstr "* Un filtre est considéré comme une chaîne et pas un regexp"
+
+#: mail-on-update.php:306
+msgid "* A filter with \"-\" at the end is not considered"
+msgstr "* Tout filtre finissant par \"-\" n'est pas pris en compte"
+
+#: mail-on-update.php:312
+msgid "Don't filter plugins"
+msgstr "Ne pas filtrer les plugins"
+
+#: mail-on-update.php:313
+msgid "Blacklist filter (exclude plugins)"
+msgstr "Liste noire (exclure des plugins)"
+
+#: mail-on-update.php:314
+msgid "Whitelist filter (include plugins)"
+msgstr "Liste blanche (inclure des plugins)"
+
+#: mail-on-update.php:315
+msgid "Don't validate inactive plugins"
+msgstr "Ne pas prendre en compte les plugins inactifs"
+
+#: mail-on-update.php:323
+msgid "Plugins to validate:"
+msgstr "Plugins à prendre en compte:"
+
+#: mail-on-update.php:329
+msgid "Plugin will be validated"
+msgstr "Le plugin sera pris en compte"
+
+#: mail-on-update.php:330
+msgid "Plugin will not be validated"
+msgstr "Le plugin ne sera pas pris en compte"
+
+#: mail-on-update.php:331
+msgid "Inactive plugin"
+msgstr "Plugin inactif"
+
