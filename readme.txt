@@ -15,6 +15,12 @@ It uses the build-in update function to periodicly check for new versions at the
 
 As of Version 2.0 you can set multilple Recipients and filter plugins according to your requirements.
 
+= Available Languages  =
+
+* German
+* English
+* French
+
 == Installation ==
 
 1. Download Plugin an unzip
@@ -34,6 +40,7 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
 
 * Version 2.6
 	* Fixed Bug when using filter
+	* Added French translation
 * Version 2.5
 	* Fixed Bug with umlaut
 	* Fixed Bug when checke WordPress Version
