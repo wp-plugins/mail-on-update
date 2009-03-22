@@ -2,7 +2,7 @@
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
 Tested up to: 2.7.1
-Stable tag: 2.6
+Stable tag: 2.7
 Requires at least: 2.6
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications
 
@@ -26,7 +26,7 @@ As of Version 2.0 you can set multilple Recipients and filter plugins according 
 1. Download Plugin an unzip
 2. Copy complete folder to your WordPress plugin-folder
 3. Activate plugin via wp-admin
-4. Go to Settings -> Mail On Update and set your options
+4. Go to Settings -> Mail On Update and set your options (if required)
 
 Done.
 
@@ -38,6 +38,9 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
 
 == Version History ==
 
+* Version 2.7
+	* Added current and new version to notification mail
+	* Update language file
 * Version 2.6
 	* Fixed Bug when using filter
 	* Added French translation

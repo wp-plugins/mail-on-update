@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
-Version: 2.6
+Version: 2.7
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -34,7 +34,7 @@ class MailOnUpdate {
 		if (function_exists('load_plugin_textdomain'))
 			load_plugin_textdomain('mail-on-update', PLUGINDIR.'/mail-on-update');
 			
-		//is wordpress at least version 2.5?
+		//is wordpress at least version 2.6?
 		if (!MOUISWP26){
 			add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 			return false;
@@ -66,7 +66,7 @@ class MailOnUpdate {
 	
 	function wpVersionFailed()
 	{
-		echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least to WordPress 2.6.','mail-on-update')."</p></div>";	
+		echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least WordPress 2.6.','mail-on-update')."</p></div>";	
 	}	
 
 	function checkPlugins()
@@ -105,22 +105,22 @@ class MailOnUpdate {
 		{	
 			if ($this->mailonupdate_pqual($plugins[$pluginfile]['Name'], $pluginfile))
 			{
-
 				//append available updates to notification message
-				$message .= sprintf( __('There is a new version (%1$s) of %2$s available.', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name']);
+				$message .= sprintf( __('A new version of %1$s is available.', 'mail-on-update'), trim($plugins[$pluginfile]['Name']));
 				$message .= "\n";
+				$message .= sprintf( __('- Installed: %1$s, Current: %2$s', 'mail-on-update'), $plugins[$pluginfile]['Version'], $update->new_version);
+				$message .= "\n\n";
 			}
 			else
 			{	
-				if (is_plugin_active($pluginfile)) { $act='active'; } else { $act='inactive';};	
-				$pluginNotVaildated .= "\n".sprintf( __('There is a new version (%1$s) of %2$s available. (%3s)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);;
+				if (is_plugin_active($pluginfile)) { $act = __('active', 'mail-on-update'); } else { $act = __('inactive', 'mail-on-update'); }	
+				$pluginNotVaildated .= "\n".sprintf( __('A new version (%1$s) of %2$s is available. (%3s)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);
 			};
 		}
 
 		if ($message!='')
 		{	
 			//append siteurl to notfication e-mail
-			$message .= "\n\n";
 			$message .= __('Update your Plugins at', 'mail-on-update')."\n".get_option('siteurl')."/wp-admin/plugins.php";
 	
 			if ($pluginNotVaildated!='') {
