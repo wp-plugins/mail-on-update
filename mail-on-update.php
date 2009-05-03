@@ -331,7 +331,6 @@ class MailOnUpdate {
 			</td>
 			</tr>
 			</table>
-		</p>
 	</div>
 	
 	<?php
