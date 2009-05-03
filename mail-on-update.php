@@ -2,12 +2,12 @@
 /*
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
-Description: Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
-Version: 2.7
+Description: Sends an E-Mail to one (e.g. WordPress admin) or multiple E-Mail-Addresses if new versions of plugins are available.
+Version: 3.0
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
-Copyright 2008 Sven Kubiak
+Copyright 2008-2009 Sven Kubiak
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,6 +27,12 @@ global $wp_version;
 define('MOUISWP26', version_compare($wp_version, '2.6', '>='));
 
 class MailOnUpdate {
+	
+	var $mou_lastchecked;
+	var $mou_mailto;
+	var $mou_exclinact;
+	var $mou_filtermethod;
+	var $mou_filter;
 
 	function mailonupdate()
 	{		
@@ -40,29 +46,60 @@ class MailOnUpdate {
 			return false;
 		}			
 		
+		//add wordpress aktions
 		add_action('wp_footer', array(&$this, 'checkPlugins'));
-		add_action('activate_mail-on-update/mail-on-update.php', array(&$this, 'activate'));
-		add_action('deactivate_mail-on-update/mail-on-update.php', array(&$this, 'deactivate'));
-		add_action('admin_menu', array(&$this, 'mailonupdateAdminMenu'));
-	}
+		add_action('admin_menu', array(&$this, 'mouAdminMenu'));
+		
+		//tell wp what to do when plugin is activated and deactivated
+		register_activation_hook(__FILE__, array(&$this, 'activate'));
+		register_deactivation_hook(__FILE__, array(&$this, 'deactivate'));		
 
-	function activate()
-	{
-		add_option('mou_lastchecked', 0, '', 'yes');
-		add_option('mailonupdate_mailto', '', '', 'yes');
-		add_option('mailonupdate_exclinact', '', '', 'yes');
-		add_option('mailonupdate_filtermethod', '', '', 'yes');
-		add_option('mailonupdate_filter', '', '', 'yes');			
+		//load nospamnx options
+		$this->loadOptions();		
 	}
+	
+	function activate()
+	{	
+		//add mailonupdate options
+		$options = array(
+			'mou_lastchecked' 	=> 0,
+			'mou_mailto'		=> '',
+			'mou_exclinact'		=> '',
+			'mou_filtermethod'	=> '',
+			'mou_filter'		=> '',
+		);
+		
+		add_option('mailonupdate', $options, '', 'yes');
+	}	
 	
 	function deactivate()
 	{
-		delete_option('mou_lastchecked');
-		delete_option('mailonupdate_mailto');
-		delete_option('mailonupdate_exclinact');
-		delete_option('mailonupdate_filtermethod');	
-		delete_option('mailonupdate_filter');			
-	}
+		delete_option('mailonupdate');	
+	}	
+	
+	function loadOptions()
+	{
+		$options = get_option('mailonupdate');
+		
+		$this->mou_lastchecked 	= $options['mou_lastchecked'];
+		$this->mou_mailto		= $options['mou_mailto'];
+		$this->mou_exclinact	= $options['mou_exclinact'];
+		$this->mou_filtermethod	= $options['mou_filtermethod'];
+		$this->mou_filter		= $options['mou_filter'];
+	}	
+	
+	function updateOptions()
+	{
+		$options = array(
+			'mou_lastchecked'	=> $this->mou_lastchecked,
+			'mou_mailto'		=> $this->mou_mailto,
+			'mou_exclinact'		=> $this->mou_exclinact,
+			'mou_filtermethod'	=> $this->mou_filtermethod,
+			'mou_filter'		=> $this->mou_filter,
+		);
+		
+		update_option('mailonupdate', $options);
+	}	
 	
 	function wpVersionFailed()
 	{
@@ -72,7 +109,7 @@ class MailOnUpdate {
 	function checkPlugins()
 	{			
 		//is last check more than 12 hours ago?
-		if (time() < get_option('mou_lastchecked') + 43200)
+		if (time() < $this->mou_lastchecked + 43200)
 			return false;
 		
 		//inlcude wordpress update functions
@@ -113,7 +150,7 @@ class MailOnUpdate {
 			}
 			else
 			{	
-				if (is_plugin_active($pluginfile)) { $act = __('active', 'mail-on-update'); } else { $act = __('inactive', 'mail-on-update'); }	
+				(is_plugin_active($pluginfile)) ? $act = __('active', 'mail-on-update') : $act = __('inactive', 'mail-on-update');
 				$pluginNotVaildated .= "\n".sprintf( __('A new version (%1$s) of %2$s is available. (%3s)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);
 			};
 		}
@@ -138,11 +175,12 @@ class MailOnUpdate {
 		};
 		
 		//set timestamp of last update check
-		update_option('mou_lastchecked', time());
+		$this->mou_lastchecked = time();
+		$this->updateOptions();
 	}
 	
 
-	function mailonupdateAdminMenu()
+	function mouAdminMenu()
 	{
 		add_options_page('Mail On Update', 'Mail On Update', 8, 'mail on update', array(&$this, 'mailonupdateConf'));           
 	}
@@ -154,6 +192,7 @@ class MailOnUpdate {
 		$hit=0;
 		foreach (split("\n",$maillist) as $imail) {
 			$mail=trim($imail);	
+			
 			if ( preg_match("/^[a-z&auml;&ouml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9_.-]+@[a-z&auml;&ouml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9-]+.[a-z&auml;&auml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9-.]+\-{0,1}$/",$mail) ) {
 				if ($sep=="\n" || substr($mail,-1)!='-' ) {
 					if ($hit>0) {$nmaillist.=$sep;};
@@ -169,27 +208,31 @@ class MailOnUpdate {
 	//notifier list
 	function mailonupdate_listOfCommaSeparatedRecipients()
 	{
-		$list=$this->mailonupdate_validateRecipient(get_option('mailonupdate_mailto'),',');
+		$list = $this->mailonupdate_validateRecipient($this->mou_mailto,',');
 	
-		if ("$list" !=''){
+		if ("$list" !='')
 			return $list;
-		}else{
+		else
 			return get_option("admin_email");
-		}
 	}
 
 
 	//radio button check
 	function rbc($option,$state_list,$default)
 	{
-			$checked='checked="checked"';
-			$state=get_option($option);
-			$hit=false;
-			foreach (split(' ',$state_list) as $istate) {
-				if ($state==$istate) {$res[$istate]=$checked; $hit=true; $break;};
-				};
+			$checked = 'checked="checked"';
+			$state = $this->mou_filtermethod;
+			$hit = false;
+			
+			foreach (split(' ',$state_list) as $istate){
+				if ($state==$istate){
+					$res[$istate] = $checked;
+					$hit=true;
+					$break;
+				}
+			}
 		
-			if (!$hit) {$res["$default"]=$checked; };
+			(!$hit) ? $res["$default"] = $checked : false;
 		
 		return $res;
 	}
@@ -197,15 +240,18 @@ class MailOnUpdate {
 	//plugin qualified?
 	function mailonupdate_pqual($plugin, $plugin_file)
 	{
-		$plugin=strtolower($plugin);
-		$filtermethod=get_option('mailonupdate_filtermethod');
+		$plugin			= strtolower($plugin);
+		$filtermethod 	= $this->mou_filtermethod;
 	
-		if ($filtermethod=='nolist') return true;
+		if ($filtermethod == 'nolist')
+			return true;
 	
-		if (get_option("mailonupdate_exclinact")!='' && !is_plugin_active($plugin_file)) return false;
+		if ($thsis->mou_exclinact != '' && !is_plugin_active($plugin_file))
+			return false;
 		
-		if ($filtermethod=='whitelist') {$state=false;} else {$state=true;};
-		foreach (split("\n",get_option('mailonupdate_filter')) as $filter) {
+		($filtermethod=='whitelist') ? $state  =false : $state = true;
+		
+		foreach (split("\n",$this->mou_filter) as $filter) {
 			$filter=trim(strtolower($filter));
 			if (!empty($filter)){
 				if (strpos($filter,-1)!='-') {
@@ -223,18 +269,18 @@ class MailOnUpdate {
 	//show qualified plugins
 	function mailonupdate_qualp()
 	{
-		$all_plugins=get_plugins();
-		$del='';
+		$all_plugins = get_plugins();
+		$del		 = '';
 		foreach( (array)$all_plugins as $plugin_file => $plugin_data) {	
 			$plugin=wp_kses($plugin_data['Title'],array());
 			if ($plugin!="") {
-				if (is_plugin_active($plugin_file)) {$inact='';} else {$inact='-';};
-				if ($this->mailonupdate_pqual($plugin, $plugin_file)) {$flag='[x]';} else {$flag='[ ]';}
+				(is_plugin_active($plugin_file)) ? $inact='' : $inact='-';
+				($this->mailonupdate_pqual($plugin, $plugin_file)) ? $flag='[x]' : $flag='[ ]';
 				
-				$l.="$del$flag$plugin$inact";
-				$del="\n";
-				};		
-			};
+				$l 	.= "$del$flag$plugin$inact";
+				$del = "\n";
+			};		
+		};
 	
 		return $l;
 	} 
@@ -245,100 +291,116 @@ class MailOnUpdate {
 		if (!current_user_can('manage_options'))
 			wp_die(__('Sorry, but you have no permissions to change settings.','mail-on-update'));
 			
-		if ( isset($_POST['submit']) ){
-			if ( isset( $_POST['mailonupdate_mailto'] ) )
-	        	update_option( 'mailonupdate_mailto', $this->mailonupdate_validateRecipient($_POST['mailonupdate_mailto'], "\n") );
+		if (isset($_POST['submit'])){
+			if (isset($_POST['mailonupdate_mailto']))
+	        	$this->mou_mailto = $this->mailonupdate_validateRecipient($_POST['mailonupdate_mailto'], "\n");
 	
-			if ( isset( $_POST['mailonupdate_filter'] ) ) {
-	            update_option( 'mailonupdate_filter', $_POST['mailonupdate_filter'] );
-				update_option( 'mailonupdate_filtermethod', $_POST['mailonupdate_filtermethod'] );
-				update_option( 'mailonupdate_exclinact', $_POST['mailonupdate_exclinact'] );
+			if (isset( $_POST['mailonupdate_filter'])){
+	            $this->mou_filter 			= $_POST['mailonupdate_filter'];
+				$this->mou_filtermethod 	= $_POST['mailonupdate_filtermethod']; 
+				$this->mou_exclinact		= $_POST['mailonupdate_exclinact'];
 			};
 			
+			$this->updateOptions();
 			echo '<div id="message" class="updated fade"><p><strong>'. __('Mail On Update settings succsesfully saved.', 'mail-on-update') .'</strong></p></div>';
 		};
 		
 		?>
 		
 		<div class="wrap">
-		<h2><?php echo __('Mail On Update Settings', 'mail-on-update'); ?></h2>
-		<p>
-		<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
-		<?php if ($this->mailonupdate_validateRecipient(get_option('mailonupdate_mailto'),',') == '') { ?>
-			<p>  
-			<?php
-			
-			printf (__('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
-				,'mail-on-update')
-            	, '<b>'.get_option("admin_email").'</b>'
-            );
-			
-
-			?>
-				
-			</p>
-		<?php }; ?>
+			<div id="icon-options-general" class="icon32"></div>
+			<h2><?php echo __('Mail On Update Settings', 'mail-on-update'); ?></h2>
 		
-			<table class="form-table">
-			<tr><th scope="row" colspan="2" valign="top"><?php echo __('List of alternative recipients:', 'mail-on-update'); ?></th></tr>
-			<tr>
-			<td width="250">
-			<textarea id="mailonupdate_mailto" name="mailonupdate_mailto" cols="40" rows="5"><?php echo get_option('mailonupdate_mailto'); ?></textarea>
-			</td>
-			<td align="left" valign="top">
-			<?php echo __('* Each E-Mail-Address has to appear on a single line', 'mail-on-update'); ?><br />
-			<?php echo __('* Invalid E-Mail-Addresses will be rejected', 'mail-on-update'); ?><br />
-	        <?php echo __('* An E-Mail-Address with "-" at the end is not considered', 'mail-on-update'); ?><br />
-			<?php echo __('* Clear this field to set the default E-Mail-Address', 'mail-on-update'); ?>
-			</td>
-			</tr>
-			</table>
-			<p class="submit"><input type="submit" name="submit" value="<?php echo __('Save', 'mail-on-update'); ?>" /></p>
-		</form>
-		<p>
-		<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
-			<table class="form-table">
-			<tr><th scope="row" colspan="2" valign="top"><?php echo __('Filters:', 'mail-on-update'); ?></th></tr>
-			<tr>
-			<td width="250" valign="top">
-			<textarea id="mailonupdate_filter" name="mailonupdate_filter" cols="40" rows="5"><?php echo get_option('mailonupdate_filter'); ?></textarea>
-			</td>
-			<td align="left" valign="top">
-			<?php echo __('* A plugin is matched if the filter is a substring', 'mail-on-update'); ?><br />
-			<?php echo __('* A filter has to appear on a single line', 'mail-on-update'); ?><br />
-			<?php echo __('* A filter is not case sensetive', 'mail-on-update'); ?><br />
-			<?php echo __('* A filter is considered as a string and no regexp', 'mail-on-update'); ?><br />		
-			<?php echo __('* A filter with "-" at the end is not considered', 'mail-on-update'); ?>
-			</td>
-			</tr>
-			<tr>
-			<td align="left" valign="top" colspan="2">
-			<?php $rval=$this->rbc('mailonupdate_filtermethod','nolist blacklist whitelist','nolist'); ?>
-	                <input type="radio" name="mailonupdate_filtermethod" value="nolist" <?php print $rval['nolist']; ?>" /> <?php echo __('Don\'t filter plugins', 'mail-on-update'); ?><br />
-	                <input type="radio" name="mailonupdate_filtermethod" value="blacklist" <?php print $rval['blacklist']; ?>" /> <?php echo __('Blacklist filter (exclude plugins)', 'mail-on-update'); ?><br />
-	                <input type="radio" name="mailonupdate_filtermethod" value="whitelist" <?php print $rval['whitelist']; ?>" /> <?php echo __('Whitelist filter (include plugins)', 'mail-on-update'); ?><br />
-	                <input type="checkbox" name="mailonupdate_exclinact" value="checked" <?php print get_option("mailonupdate_exclinact"); ?> /> <?php echo __('Don\'t validate inactive plugins', 'mail-on-update'); ?>
-			</td>
-			</tr>
-			</table>
-			<p class="submit"><input type="submit" name="submit" value="<?php echo __('Save', 'mail-on-update'); ?>" /></p>
-		</form>
-		<p>
-			<table class="form-table">
-			<tr><th colspan="2" scope="row" valign="top"><?php echo __('Plugins to validate:', 'mail-on-update'); ?></th></tr>
-			<tr>
-			<td width="250" valign="top"> 
-			<textarea id="mailonupdate_pluginmonitor" name="mailonupdate_pluginmonitor" readonly="readonly" cols="40" rows="5" /><?php print $this->mailonupdate_qualp(); ?> </textarea>
-			</td>
-			<td align="left" valign="top">
-				[x] <?php echo __('Plugin will be validated', 'mail-on-update'); ?><br />
-				[ ] <?php echo __('Plugin will not be validated', 'mail-on-update'); ?><br />
-				"-" <?php echo __('Inactive plugin', 'mail-on-update'); ?>
-			</td>
-			</tr>
-			</table>
-		</p>
-	</div>
+			<div id="poststuff" class="ui-sortable">
+				<div class="postbox opened">
+					<h3><?php echo __('List of alternative recipients', 'mail-on-update'); ?></h3>
+					<div class="inside">
+						<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
+					    <table class="form-table">
+					    	<tr>
+								<td colspan="2">
+								<?php 
+								
+								if ($this->mailonupdate_validateRecipient($this->mou_mailto,',') == '') {
+								
+									echo "<p>";
+									printf (__('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
+										,'mail-on-update')
+						            	, '<b>'.get_option("admin_email").'</b>'
+						            );
+						            
+									echo "</p>";
+								}
+								
+								?>
+							</tr>
+							<tr>	
+								<td width="10"><textarea id="mailonupdate_mailto" name="mailonupdate_mailto" cols="40" rows="5"><?php echo $this->mou_mailto; ?></textarea></td>
+								<td valign="top">
+								<?php echo __('* Each E-Mail-Address has to appear on a single line', 'mail-on-update'); ?><br />
+								<?php echo __('* Invalid E-Mail-Addresses will be rejected', 'mail-on-update'); ?><br />
+	        					<?php echo __('* An E-Mail-Address with "-" at the end is not considered', 'mail-on-update'); ?><br />
+								<?php echo __('* Clear this field to set the default E-Mail-Address', 'mail-on-update'); ?>
+								</td>
+							</tr>
+						</table>
+						<p class="submit"><input type="submit" class='button-primary' name="submit" value="<?php echo __('Save', 'mail-on-update'); ?>" /></p>	
+						</form>				
+					</div>
+				</div>
+			</div>	
+			
+			<div id="poststuff" class="ui-sortable">
+				<div class="postbox opened">
+					<h3><?php echo __('Filters', 'mail-on-update'); ?></h3>
+					<div class="inside">
+						<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
+					    <table class="form-table">
+							<tr>
+								<td width="10"><textarea id="mailonupdate_filter" name="mailonupdate_filter" cols="40" rows="5"><?php echo $this->mou_filter; ?></textarea></td>
+								<td valign="top">
+								<?php echo __('* A plugin is matched if the filter is a substring', 'mail-on-update'); ?><br />
+								<?php echo __('* A filter has to appear on a single line', 'mail-on-update'); ?><br />
+								<?php echo __('* A filter is not case sensetive', 'mail-on-update'); ?><br />
+								<?php echo __('* A filter is considered as a string and no regexp', 'mail-on-update'); ?><br />		
+								<?php echo __('* A filter with "-" at the end is not considered', 'mail-on-update'); ?>								
+								<?php $rval = $this->rbc('mailonupdate_filtermethod','nolist blacklist whitelist','nolist'); ?>
+								</td> 
+							</tr>
+							<tr>
+								<td valign="top">
+	                			<input type="radio" name="mailonupdate_filtermethod" value="nolist" <?php print $rval['nolist']; ?>" /> <?php echo __('Don\'t filter plugins', 'mail-on-update'); ?><br />
+	                			<input type="radio" name="mailonupdate_filtermethod" value="blacklist" <?php print $rval['blacklist']; ?>" /> <?php echo __('Blacklist filter (exclude plugins)', 'mail-on-update'); ?><br />
+	                			<input type="radio" name="mailonupdate_filtermethod" value="whitelist" <?php print $rval['whitelist']; ?>" /> <?php echo __('Whitelist filter (include plugins)', 'mail-on-update'); ?><br />
+	                			<input type="checkbox" name="mailonupdate_exclinact" value="checked" <?php print $this->mou_exclinact; ?> /> <?php echo __('Don\'t validate inactive plugins', 'mail-on-update'); ?>							
+								</td>
+							</tr>
+						</table>	
+						<p class="submit"><input type="submit" class='button-primary' name="submit" value="<?php echo __('Save', 'mail-on-update'); ?>" /></p>
+						</form>				
+					</div>
+				</div>
+			</div>
+
+			<div id="poststuff" class="ui-sortable">
+				<div class="postbox opened">
+					<h3><?php echo __('Plugins to validate', 'mail-on-update'); ?></h3>
+					<div class="inside">
+					    <table class="form-table">
+					    	<tr>
+								<td width="10"><textarea id="mailonupdate_pluginmonitor" name="mailonupdate_pluginmonitor" readonly="readonly" cols="40" rows="5" /><?php print $this->mailonupdate_qualp(); ?></textarea></td>
+								<td valign="top" align="left">
+								[x] <?php echo __('Plugin will be validated', 'mail-on-update'); ?><br />
+								[ ] <?php echo __('Plugin will not be validated', 'mail-on-update'); ?><br />
+								"-" <?php echo __('Inactive plugin', 'mail-on-update'); ?>								
+								</td>
+							</tr>
+						</table>			
+					</div>
+				</div>
+			</div>			
+			
+		</div>				
 	
 	<?php
 
@@ -346,5 +408,5 @@ class MailOnUpdate {
 }
 //initallze class
 if (class_exists('MailOnUpdate'))
-	$mailonupdate = new MailOnUpdate();
+	$mou = new MailOnUpdate();
 ?>
