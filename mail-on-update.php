@@ -323,7 +323,6 @@ class MailOnUpdate {
 			</table>
 			<p class="submit"><input type="submit" name="submit" value="<?php echo __('Save', 'mail-on-update'); ?>" /></p>
 		</form>
-		<p>
 			<table class="form-table">
 			<tr><th colspan="2" scope="row" valign="top"><?php echo __('Plugins to validate:', 'mail-on-update'); ?></th></tr>
 			<tr>
@@ -337,7 +336,6 @@ class MailOnUpdate {
 			</td>
 			</tr>
 			</table>
-		</p>
 	</div>
 	
 	<?php
