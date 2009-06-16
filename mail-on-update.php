@@ -290,7 +290,7 @@ class MailOnUpdate {
 		return $l;
 	} 
 
-	//the configuration page
+	//the configuration page 
 	function mailonupdateConf()
 	{
 		if (!current_user_can('manage_options'))

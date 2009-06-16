@@ -9,7 +9,7 @@ Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notificati
 Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
 
 == Description ==
-
+ 
 As of Version 2.5, WordPress automaticly checks if a new update for an installed plugin is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
 It uses the build-in update function to periodicly check for new versions at the wordpress plugin directory. If a new version is available, the WordPress-Admin will recieve an E-mail every 12 Hours, informing him which plugins needs to be updated.
 
