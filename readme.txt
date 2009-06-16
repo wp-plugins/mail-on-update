@@ -38,6 +38,9 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
 
 == Version History ==
 
+* Version 3.1
+	* Removed debug informations which made it in the release (sorry)
+	* Change Subject of notifcation E-Mails
 * Version 3.0
 	* Fixed incompatibility with WordPress 2.8
 * Version 3.0

@@ -128,7 +128,6 @@ class MailOnUpdate {
 			
 		//are plugin updates available?
 		if (empty($updates->response)){
-			echo "foo return";
 			return false; 
 		}
 			
@@ -172,11 +171,12 @@ class MailOnUpdate {
 			
 			//set mail header for notification message
 			$sender 	= 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
-			$from 		= "From: \"$blogname\" <$sender>";	
+			$from 		= "From: \"$sender\" <$sender>";	
 			$headers 	= "$from\n" . "Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"\n";
 			
 			//send e-mail notification to admin or multiple recipienes
-			wp_mail($this->mailonupdate_listOfCommaSeparatedRecipients(), __('WordPress Plugin Update Notification','mail-on-update'), $message, $headers);	
+			$subject = sprintf(__('[%s] Plugin Update Notification','mail-on-update'), $blogname);
+			wp_mail($this->mailonupdate_listOfCommaSeparatedRecipients(), $subject, $message, $headers);	
 
 		};
 		
@@ -185,7 +185,6 @@ class MailOnUpdate {
 		$this->updateOptions();
 	}
 	
-
 	function mouAdminMenu()
 	{
 		add_options_page('Mail On Update', 'Mail On Update', 8, 'mail on update', array(&$this, 'mailonupdateConf'));           
