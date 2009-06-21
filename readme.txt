@@ -42,10 +42,10 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
 = 3.3 =
 * Removed debug informations which made it in the release (sorry)
 * Change Subject of notifcation E-Mails
-* Added new WordPress Plugins Chengelog
+* Added new WordPress Plugins Changelog
 
 = 3.2 =
-*  WordPress-Plugin SVN Error?!
+*  WordPress-Plugin SVN Error, which did not allow 3.2 commit?!
 
 = 3.1 =
 * Fixed incompatibility with WordPress 2.8
