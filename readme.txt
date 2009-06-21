@@ -2,7 +2,7 @@
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
 Tested up to: 2.8
-Stable tag: 3.1
+Stable tag: 3.2
 Requires at least: 2.6
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications
 
@@ -35,56 +35,74 @@ Done.
 = I don't recieve any E-mails, although updates are available =
 
 Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E-Mail-Address. Furthermore the Plugin is only called when the blog is accesed. So your Blog needs at least some clicks.
+ 
 
-== Version History ==
+== Changelog ==
 
-* Version 3.1
-	* Removed debug informations which made it in the release (sorry)
-	* Change Subject of notifcation E-Mails
-* Version 3.0
-	* Fixed incompatibility with WordPress 2.8
-* Version 3.0
-	* Changed handling of options
-	* Code cleanup and improvements
-	* New style for settings page
-	* Update language file
-* Version 2.7
-	* Added current and new version to notification mail
-	* Update language file
-* Version 2.6
-	* Fixed Bug when using filter
-	* Added French translation
-* Version 2.5
-	* Fixed Bug with umlaut
-	* Fixed Bug when checke WordPress Version
-* Version 2.4
-	* Fixed Bug when validating E-Mail-Adresses
-	* Fixed Bug with UTF-8 encoding
-	* Fixed Bug when validating if a plugin is active or not
-	* Updated language file
-* Version 2.3
-	* Fixed Bug when sending notifications
-* Version 2.2
-	* Fixed Pharse Error
-* Version 2.1
-	* Updated language file
-* Version 2.0
-	* Added Option page
-	* Added Option for alternative Recipients
-	* Added Option to filter Plugins
-	* Added Option to not inform user if a plugin is anctive
-	* Update language file
-	* Update readme file
-* Version 1.5
-	* Changed E-Mail Notification
-* Version 1.4
-	* Minor code cleanup
-* Version 1.3
-	* Fixed bug in E-Mail Notification
-* Version 1.2
-	* Stable Release
-    * Minor code cleanup
-* Version 1.1 Beta
-    * Fixed: Blogname was missing
-* Version 1.0 Beta
-    * Initial version
+= 3.2 =
+* Removed debug informations which made it in the release (sorry)
+* Change Subject of notifcation E-Mails
+* Added new WordPress Plugins Chengelog
+
+= 3.1 =
+* Fixed incompatibility with WordPress 2.8
+
+= 3.0 =
+* Changed handling of options
+* Code cleanup and improvements
+* New style for settings page
+* Update language file
+
+= 2.7 =
+* Added current and new version to notification mail
+* Update language file
+
+= 2.6 =
+* Fixed Bug when using filter
+* Added French translation
+
+= 2.5 =
+* Fixed Bug with umlaut
+* Fixed Bug when checke WordPress Version
+
+= 2.4 =
+* Fixed Bug when validating E-Mail-Adresses
+* Fixed Bug with UTF-8 encoding
+* Fixed Bug when validating if a plugin is active or not
+* Updated language file
+	
+= 2.3 =
+* Fixed Bug when sending notifications
+	
+= 2.2 =
+* Fixed Pharse Error
+
+= 2.1 =
+* Updated language file
+
+= 2.0 =
+* Added Option page
+* Added Option for alternative Recipients
+* Added Option to filter Plugins
+* Added Option to not inform user if a plugin is anctive
+* Update language file
+* Update readme file
+
+= 1.5 =
+* Changed E-Mail Notification
+	
+= 1.4 =
+* Minor code cleanup
+	
+= 1.3 =
+* Fixed bug in E-Mail Notification
+	
+= 1.2 =
+* Stable Release
+* Minor code cleanup
+    
+= 1.1 Beta =
+* Fixed: Blogname was missing
+    
+= 1.0 Beta =
+* Initial version
