@@ -34,7 +34,7 @@ Done.
 
 = I don't recieve any E-mails, although updates are available =
 
-Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E-Mail-Address. Furthermore the Plugin is only called when the blog is accesed. So your Blog needs at least some clicks.
+Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E-mail-adress. Furthermore the Plugin is only called when the blog is accesed. So your Blog needs at least one click.
  
 
 == Changelog ==
