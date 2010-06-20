@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
-Tested up to: 2.9.1
-Stable tag: 3.4
+Tested up to: 3.0
+Stable tag: 4.0
 Requires at least: 2.6
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications
 
@@ -10,10 +10,10 @@ Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if ne
 
 == Description ==
  
-As of Version 2.5, WordPress automaticly checks if a new update for an installed plugin is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
+As of WordPress Version 2.5, WordPress automaticly checks if a new update for an installed plugin is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
 It uses the build-in update function to periodicly check for new versions at the wordpress plugin directory. If a new version is available, the WordPress-Admin will recieve an E-mail every 12 Hours, informing him which plugins needs to be updated.
 
-As of Version 2.0 you can set multilple Recipients and filter plugins according to your requirements.
+As of Plugin Version 2.0 you can set multilple Recipients and filter plugins according to your requirements.
 
 = Available Languages  =
 
@@ -38,6 +38,10 @@ Check you Admin E-mail settings under Settings -> E-Mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 4.0 =
+* Added compatibility to WordPress 3.0
+* Updated language files
 
 = 3.4 =
 * Code-Cleanup

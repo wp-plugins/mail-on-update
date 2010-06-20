@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail to one (e.g. WordPress admin) or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 3.4
+Version: 4.0
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -180,7 +180,7 @@ if (!class_exists('MailOnUpdate'))
 		}
 		
 		function mouAdminMenu() {
-			add_options_page('Mail On Update', 'Mail On Update', 8, 'mail on update', array(&$this, 'mailonupdateConf'));           
+    		add_options_page('Mail On Update', 'Mail On Update', 8, 'mail-on-update', array(&$this, 'mailonupdateConf')); 
 		}
 	
 		//$sep=="\n"	:return qualified mail addresses for the form field
@@ -267,8 +267,8 @@ if (!class_exists('MailOnUpdate'))
 			foreach( (array)$all_plugins as $plugin_file => $plugin_data) {	
 				$plugin=wp_kses($plugin_data['Title'],array());
 				if ($plugin!="") {
-					(is_plugin_active($plugin_file)) ? $inact='' : $inact='-';
-					($this->mailonupdate_pqual($plugin, $plugin_file)) ? $flag='[x]' : $flag='[ ]';
+					(is_plugin_active($plugin_file)) ? $inact='' : $inact=" (".__('inactive', 'mail-on-update').")";
+					($this->mailonupdate_pqual($plugin, $plugin_file)) ? $flag='[x] ' : $flag='[ ] ';
 					
 					$l 	.= "$del$flag$plugin$inact";
 					$del = "\n";
@@ -307,7 +307,7 @@ if (!class_exists('MailOnUpdate'))
 					<div class="postbox opened">
 						<h3><?php echo __('List of alternative recipients', 'mail-on-update'); ?></h3>
 						<div class="inside">
-							<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
+							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
 						    	<tr>
 									<td colspan="2">
@@ -346,7 +346,7 @@ if (!class_exists('MailOnUpdate'))
 					<div class="postbox opened">
 						<h3><?php echo __('Filters', 'mail-on-update'); ?></h3>
 						<div class="inside">
-							<form action="options-general.php?page=mail on update" method="post" id="mailonupdate-conf">
+							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
 								<tr>
 									<td width="10"><textarea id="mailonupdate_filter" name="mailonupdate_filter" cols="40" rows="5"><?php echo $this->mou_filter; ?></textarea></td>
@@ -380,11 +380,12 @@ if (!class_exists('MailOnUpdate'))
 						<div class="inside">
 						    <table class="form-table">
 						    	<tr>
-									<td width="10"><textarea id="mailonupdate_pluginmonitor" name="mailonupdate_pluginmonitor" readonly="readonly" cols="40" rows="5" /><?php print $this->mailonupdate_qualp(); ?></textarea></td>
-									<td valign="top" align="left">
+									<td><textarea id="mailonupdate_pluginmonitor" name="mailonupdate_pluginmonitor" class="large-text code" readonly="readonly" cols="50" rows="10" /><?php print $this->mailonupdate_qualp(); ?></textarea></td>
+								</tr>
+								<tr>
+									<td>
 									[x] <?php echo __('Plugin will be validated', 'mail-on-update'); ?><br />
-									[ ] <?php echo __('Plugin will not be validated', 'mail-on-update'); ?><br />
-									"-" <?php echo __('Inactive plugin', 'mail-on-update'); ?>								
+									[ ] <?php echo __('Plugin will not be validated', 'mail-on-update'); ?><br />							
 									</td>
 								</tr>
 							</table>			

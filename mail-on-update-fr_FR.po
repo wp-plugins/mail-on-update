@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mail On Update v2.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 10:32+0100\n"
-"PO-Revision-Date: 2010-01-10 10:33+0100\n"
+"POT-Creation-Date: 2010-06-20 09:59+0100\n"
+"PO-Revision-Date: 2010-06-20 09:59+0100\n"
 "Last-Translator: Sven Kubiak <sk@svenkubiak.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,173 +18,169 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 # @ mail-on-update
-#: mail-on-update.php:109
+#: mail-on-update.php:106
 msgid "Your WordPress is to old. Mail On Update requires at least WordPress 2.6."
 msgstr "Votre version de Wordpress est trop vieille. Mail On Update nécessite au moins la version 2.6 de Wordpress."
 
 # @ mail-on-update
-#: mail-on-update.php:153
+#: mail-on-update.php:147
 #, php-format
 msgid "A new version of %1$s is available."
 msgstr "Il y a une nouvelle version de %1$s disponible."
 
 # @ mail-on-update
-#: mail-on-update.php:155
+#: mail-on-update.php:149
 #, php-format
 msgid "- Installed: %1$s, Current: %2$s"
 msgstr "- Installé: %1$s, Actuel: %2$s"
 
 # @ mail-on-update
-#: mail-on-update.php:160
+#: mail-on-update.php:153
 msgid "active"
 msgstr "actif"
 
 # @ mail-on-update
-#: mail-on-update.php:160
+#: mail-on-update.php:153
+#: mail-on-update.php:270
 msgid "inactive"
 msgstr "inactif"
 
 # @ mail-on-update
-#: mail-on-update.php:161
+#: mail-on-update.php:154
 #, php-format
 msgid "A new version (%1$s) of %2$s is available. (%3s)"
 msgstr "Il y a une nouvelle version (%1$s) de %2$s disponible. (%3s)"
 
 # @ mail-on-update
-#: mail-on-update.php:168
+#: mail-on-update.php:160
 msgid "Update your Plugins at"
 msgstr "Mettez à jour vos plugins sur "
 
 # @ mail-on-update
-#: mail-on-update.php:171
+#: mail-on-update.php:163
 msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
 msgstr "Il y a aussi des mises à jour disponibles pour les plugins ci-dessous. Quoiqu'il en soit, ces plugins ne sont pas concernés par cet avertissement et ce message est juste à titre informatif."
 
 # @ mail-on-update
-#: mail-on-update.php:180
+#: mail-on-update.php:172
 #, php-format
 msgid "[%s] Plugin Update Notification"
 msgstr "Notification d'un plugin"
 
 # @ mail-on-update
-#: mail-on-update.php:299
+#: mail-on-update.php:284
 msgid "Sorry, but you have no permissions to change settings."
 msgstr "Désolé mais vous n'avez pas l'autorisation de modifier ces réglages."
 
 # @ mail-on-update
-#: mail-on-update.php:312
+#: mail-on-update.php:297
 msgid "Mail On Update settings succsesfully saved."
 msgstr "Les réglages de Mail on Update ont été sauvegardés avec succès."
 
 # @ mail-on-update
-#: mail-on-update.php:319
+#: mail-on-update.php:304
 msgid "Mail On Update Settings"
 msgstr "Réglages de Mail on Update"
 
 # @ mail-on-update
-#: mail-on-update.php:323
+#: mail-on-update.php:308
 msgid "List of alternative recipients"
 msgstr "Liste de destinataires autres"
 
 # @ mail-on-update
-#: mail-on-update.php:334
+#: mail-on-update.php:319
 #, php-format
 msgid "Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override."
 msgstr "Comme aucun autre destinataire n'a été spécifié, l'adresse par défaut %s est prise en compte. Veuillez fournir une liste de destinataires autres pour modifier ce réglage. "
 
 # @ mail-on-update
-#: mail-on-update.php:347
+#: mail-on-update.php:332
 msgid "* Each E-Mail-Address has to appear on a single line"
 msgstr "* Chaque adresse email doit être affichée sur une seule ligne"
 
 # @ mail-on-update
-#: mail-on-update.php:348
+#: mail-on-update.php:333
 msgid "* Invalid E-Mail-Addresses will be rejected"
 msgstr "* Les adresses email non valides seront rejetées"
 
 # @ mail-on-update
-#: mail-on-update.php:349
+#: mail-on-update.php:334
 msgid "* An E-Mail-Address with \"-\" at the end is not considered"
 msgstr "* Une adresse email avec \"-\" à la fin ne seront pas prises en compte"
 
 # @ mail-on-update
-#: mail-on-update.php:350
+#: mail-on-update.php:335
 msgid "* Clear this field to set the default E-Mail-Address"
 msgstr "* Effacer ce champ pour mettre l'adresse email par défaut"
 
 # @ mail-on-update
-#: mail-on-update.php:354
-#: mail-on-update.php:386
+#: mail-on-update.php:339
+#: mail-on-update.php:371
 msgid "Save"
 msgstr "Sauvegarder"
 
 # @ mail-on-update
-#: mail-on-update.php:362
+#: mail-on-update.php:347
 msgid "Filters"
 msgstr "Filtres"
 
 # @ mail-on-update
-#: mail-on-update.php:369
+#: mail-on-update.php:354
 msgid "* A plugin is matched if the filter is a substring"
 msgstr "* Correspond à un plugin si le filtre est une sous-chaîne"
 
 # @ mail-on-update
-#: mail-on-update.php:370
+#: mail-on-update.php:355
 msgid "* A filter has to appear on a single line"
 msgstr "* Chaque filtre doit s'afficher sur une seule ligne"
 
 # @ mail-on-update
-#: mail-on-update.php:371
+#: mail-on-update.php:356
 msgid "* A filter is not case sensetive"
 msgstr "* Les filtres ne sont pas sensibles à la casse"
 
 # @ mail-on-update
-#: mail-on-update.php:372
+#: mail-on-update.php:357
 msgid "* A filter is considered as a string and no regexp"
 msgstr "* Un filtre est considéré comme une chaîne et pas un regexp"
 
 # @ mail-on-update
-#: mail-on-update.php:373
+#: mail-on-update.php:358
 msgid "* A filter with \"-\" at the end is not considered"
 msgstr "* Tout filtre finissant par \"-\" n'est pas pris en compte"
 
 # @ mail-on-update
-#: mail-on-update.php:379
+#: mail-on-update.php:364
 msgid "Don't filter plugins"
 msgstr "Ne pas filtrer les plugins"
 
 # @ mail-on-update
-#: mail-on-update.php:380
+#: mail-on-update.php:365
 msgid "Blacklist filter (exclude plugins)"
 msgstr "Liste noire (exclure des plugins)"
 
 # @ mail-on-update
-#: mail-on-update.php:381
+#: mail-on-update.php:366
 msgid "Whitelist filter (include plugins)"
 msgstr "Liste blanche (inclure des plugins)"
 
 # @ mail-on-update
-#: mail-on-update.php:382
+#: mail-on-update.php:367
 msgid "Don't validate inactive plugins"
 msgstr "Ne pas prendre en compte les plugins inactifs"
 
 # @ mail-on-update
-#: mail-on-update.php:394
+#: mail-on-update.php:379
 msgid "Plugins to validate"
 msgstr "Plugins à prendre en compte"
 
 # @ mail-on-update
-#: mail-on-update.php:400
+#: mail-on-update.php:387
 msgid "Plugin will be validated"
 msgstr "Le plugin sera pris en compte"
 
 # @ mail-on-update
-#: mail-on-update.php:401
+#: mail-on-update.php:388
 msgid "Plugin will not be validated"
 msgstr "Le plugin ne sera pas pris en compte"
-
-# @ mail-on-update
-#: mail-on-update.php:402
-msgid "Inactive plugin"
-msgstr "Plugin inactif"
 
