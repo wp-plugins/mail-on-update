@@ -2,12 +2,12 @@
 /*
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
-Description: Sends an E-Mail to one (e.g. WordPress admin) or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 4.0
+Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
+Version: 4.1
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
-Copyright 2008-2009 Sven Kubiak
+Copyright 2008-2010 Sven Kubiak, Matthias Kindler
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -24,8 +24,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 global $wp_version;
-define('MOUISWP26', version_compare($wp_version, '2.6', '>='));
 define('MOUISWP28', version_compare($wp_version, '2.8', '>='));
+define('MOUISWP30', version_compare($wp_version, '3.0', '>='));
 
 if (!class_exists('MailOnUpdate'))
 {
@@ -42,8 +42,8 @@ if (!class_exists('MailOnUpdate'))
 			if (function_exists('load_plugin_textdomain'))
 				load_plugin_textdomain('mail-on-update', PLUGINDIR.'/mail-on-update');
 				
-			//is wordpress at least version 2.6?
-			if (!MOUISWP26) {
+			//is wordpress at least version 2.8?
+			if (!MOUISWP28) {
 				add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 				return false;
 			}			
@@ -103,26 +103,27 @@ if (!class_exists('MailOnUpdate'))
 		}	
 		
 		function wpVersionFailed() {
-			echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least WordPress 2.6.','mail-on-update')."</p></div>";	
+			echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least WordPress 2.8!','mail-on-update')."</p></div>";	
 		}	
 	
 		function checkPlugins() {			
 			//is last check more than 12 hours ago?
 			if (time() < $this->mou_lastchecked + 43200)
 				return false;
-			
+					
 			//inlcude wordpress update functions
 			@require_once ( ABSPATH . 'wp-admin/includes/update.php' );
 			@require_once ( ABSPATH . 'wp-admin/admin-functions.php' );			
 				
 			//call the wordpress update function
-			wp_update_plugins();		
-				
-			//get a list of plugins to update		
-			if (MOUISWP28)
+			if (MOUISWP30) {
+				wp_plugin_update_rows();
+				$updates = get_site_transient('update_plugins');
+			}
+			else {
+				wp_update_plugins();
 				$updates = get_transient('update_plugins');
-			else 
-				$updates = get_option('update_plugins');
+			}		
 				
 			//are plugin updates available?
 			if (empty($updates->response)){
@@ -131,16 +132,11 @@ if (!class_exists('MailOnUpdate'))
 				
 			//get all plugin
 			$plugins = get_plugins();
-			
-			//set blogname for notification e-mail
 			$blogname = get_option('blogname');
-	
-			//start message for the notification e-mail
 			$message  = '';
-					
-			//loop through available plugin updates
 			$pluginNotVaildated = '';
-	
+			
+			//loop through available plugin updates	
 			foreach ($updates->response as $pluginfile => $update) {	
 				if ($this->mailonupdate_pqual($plugins[$pluginfile]['Name'], $pluginfile)) {
 					//append available updates to notification message

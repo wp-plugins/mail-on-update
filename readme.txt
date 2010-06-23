@@ -2,8 +2,8 @@
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
 Tested up to: 3.0
-Stable tag: 4.0
-Requires at least: 2.6
+Stable tag: 4.1
+Requires at least: 2.8
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications
 
 Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
@@ -38,6 +38,11 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 4.1 =
+* Fixed Bug with WordPress 3.0
+* Plugin requires now at least WordPress 2.8
+* Updated language files
 
 = 4.0 =
 * Added compatibility to WordPress 3.0
