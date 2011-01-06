@@ -3,11 +3,11 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 4.1
+Version: 4.2
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
-Copyright 2008-2010 Sven Kubiak, Matthias Kindler
+Copyright 2008-2011 Sven Kubiak, Matthias Kindler
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -208,7 +208,6 @@ if (!class_exists('MailOnUpdate'))
 				return get_option("admin_email");
 		}
 	
-	
 		//radio button check
 		function rbc($option,$state_list,$default) {
 				$checked = 'checked="checked"';
@@ -306,7 +305,7 @@ if (!class_exists('MailOnUpdate'))
 							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
 						    	<tr>
-									<td colspan="2">
+									<td>
 									<?php 
 									
 									if ($this->mailonupdate_validateRecipient($this->mou_mailto,',') == '') {
@@ -321,6 +320,21 @@ if (!class_exists('MailOnUpdate'))
 									}
 									
 									?>
+									</td>
+									<td>
+									<script type="text/javascript">
+										/* <![CDATA[ */
+										    (function() {
+										        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+										        s.type = 'text/javascript';
+										        s.async = true;
+										        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+										        t.parentNode.insertBefore(s, t);
+										    })();
+										/* ]]> */
+									</script>
+									<a class="FlattrButton" style="display:none;" href="http://www.svenkubiak.de/mail-on-update/"></a>
+									</td>
 								</tr>
 								<tr>	
 									<td width="10"><textarea id="mailonupdate_mailto" name="mailonupdate_mailto" cols="40" rows="5"><?php echo $this->mou_mailto; ?></textarea></td>

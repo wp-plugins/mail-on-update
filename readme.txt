@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
-Tested up to: 3.0
-Stable tag: 4.1
+Tested up to: 3.0.4
+Stable tag: 4.2
 Requires at least: 2.8
-Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update
+Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform
 
 Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new versions of plugins are available.
 
@@ -38,6 +38,9 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 4.2 =
+* Added Flattr button
 
 = 4.1 =
 * Fixed Bug with WordPress 3.0
