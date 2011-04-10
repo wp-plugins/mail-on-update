@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: kubi23
 Donate link: http://www.svenkubiak.de/mail-on-update/#donate
-Tested up to: 3.1
+Tested up to: 3.1.1
 Stable tag: 4.2
 Requires at least: 2.8
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform
