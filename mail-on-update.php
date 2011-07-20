@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 4.2
+Version: 4.3
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -32,6 +32,8 @@ if (!class_exists('MailOnUpdate'))
 	class MailOnUpdate {
 		
 		var $mou_lastchecked;
+		var $mou_lastmessage;
+		var $mou_singlenotification;
 		var $mou_mailto;
 		var $mou_exclinact;
 		var $mou_filtermethod;
@@ -67,6 +69,8 @@ if (!class_exists('MailOnUpdate'))
 		function activate() {	
 			$options = array(
 				'mou_lastchecked' 	=> 0,
+				'mou_singlenotification' => '',
+				'mou_lastmessage'	=> '',
 				'mou_mailto'		=> '',
 				'mou_exclinact'		=> '',
 				'mou_filtermethod'	=> '',
@@ -84,6 +88,8 @@ if (!class_exists('MailOnUpdate'))
 			$options = get_option('mailonupdate');
 			
 			$this->mou_lastchecked 	= $options['mou_lastchecked'];
+			$this->mou_lastmessage = $options['mou_lastmessage'];
+			$this->mou_singlenotification = $options['mou_singlenotification'];			
 			$this->mou_mailto		= $options['mou_mailto'];
 			$this->mou_exclinact	= $options['mou_exclinact'];
 			$this->mou_filtermethod	= $options['mou_filtermethod'];
@@ -93,6 +99,8 @@ if (!class_exists('MailOnUpdate'))
 		function setOptions() {
 			$options = array(
 				'mou_lastchecked'	=> $this->mou_lastchecked,
+				'mou_lastmessage' => $this->mou_lastmessage,
+				'mou_singlenotification' => $this->mou_singlenotification,
 				'mou_mailto'		=> $this->mou_mailto,
 				'mou_exclinact'		=> $this->mou_exclinact,
 				'mou_filtermethod'	=> $this->mou_filtermethod,
@@ -150,8 +158,10 @@ if (!class_exists('MailOnUpdate'))
 					$pluginNotVaildated .= "\n".sprintf( __('A new version (%1$s) of %2$s is available. (%3s)', 'mail-on-update'), $update->new_version, $plugins[$pluginfile]['Name'], $act);
 				};
 			}
-	
-			if ($message!='') {	
+
+			if ($message!='' && ($this->mou_singlenotification == '' || ($message != $this->mou_lastmessage && $this->mou_singlenotification != ''))) {	
+				$this->mou_lastmessage = $message;
+
 				//append siteurl to notfication e-mail
 				$message .= __('Update your Plugins at', 'mail-on-update')."\n".get_option('siteurl')."/wp-admin/plugins.php";
 		
@@ -167,7 +177,6 @@ if (!class_exists('MailOnUpdate'))
 				//send e-mail notification to admin or multiple recipienes
 				$subject = sprintf(__('[%s] Plugin Update Notification','mail-on-update'), $blogname);
 				wp_mail($this->mailonupdate_listOfCommaSeparatedRecipients(), $subject, $message, $headers);	
-	
 			};
 			
 			//set timestamp of last update check
@@ -182,6 +191,7 @@ if (!class_exists('MailOnUpdate'))
 		//$sep=="\n"	:return qualified mail addresses for the form field
 		//$sep!="\n"	:return a $sep separated list of qualified mail addresses which are not disabled (by '-' at the end of the mail address) 
 		function mailonupdate_validateRecipient($maillist,$sep) {
+			$nmaillist = '';
 			$hit=0;
 			foreach (split("\n",$maillist) as $imail) {
 				$mail=trim($imail);	
@@ -235,7 +245,7 @@ if (!class_exists('MailOnUpdate'))
 			if ($filtermethod == 'nolist')
 				return true;
 		
-			if ($thsis->mou_exclinact != '' && !is_plugin_active($plugin_file))
+			if ($this->mou_exclinact != '' && !is_plugin_active($plugin_file))
 				return false;
 			
 			($filtermethod=='whitelist') ? $state  =false : $state = true;
@@ -257,6 +267,7 @@ if (!class_exists('MailOnUpdate'))
 	
 		//show qualified plugins
 		function mailonupdate_qualp() {
+			$l = '';
 			$all_plugins = get_plugins();
 			$del		 = '';
 			foreach( (array)$all_plugins as $plugin_file => $plugin_data) {	
@@ -281,9 +292,11 @@ if (!class_exists('MailOnUpdate'))
 			if (isset($_POST['submit'])){
 				if (isset($_POST['mailonupdate_mailto']))
 		        	$this->mou_mailto = $this->mailonupdate_validateRecipient($_POST['mailonupdate_mailto'], "\n");
+
+		   	$this->mou_singlenotification = $_POST['mailonupdate_singlenotification'];
 		
 				if (isset( $_POST['mailonupdate_filter'])){
-		            $this->mou_filter 			= $_POST['mailonupdate_filter'];
+		      $this->mou_filter 			= $_POST['mailonupdate_filter'];
 					$this->mou_filtermethod 	= $_POST['mailonupdate_filtermethod']; 
 					$this->mou_exclinact		= $_POST['mailonupdate_exclinact'];
 				};
@@ -345,6 +358,11 @@ if (!class_exists('MailOnUpdate'))
 									<?php echo __('* Clear this field to set the default E-Mail-Address', 'mail-on-update'); ?>
 									</td>
 								</tr>
+								<tr>
+									<td valign="top">
+		                			<label><input type="checkbox" name="mailonupdate_singlenotification" value="checked" <?php print $this->mou_singlenotification; ?> /> <?php echo __('Send only one notification per Update', 'mail-on-update'); ?></label>						
+									</td>
+								</tr>
 							</table>
 							<p class="submit"><input type="submit" class='button-primary' name="submit" value="<?php echo __('Save', 'mail-on-update'); ?>" /></p>	
 							</form>				
@@ -402,7 +420,6 @@ if (!class_exists('MailOnUpdate'))
 						</div>
 					</div>
 				</div>			
-				
 			</div>				
 		
 		<?php
