@@ -389,9 +389,9 @@ if (!class_exists('MailOnUpdate'))
 								</tr>
 								<tr>
 									<td valign="top">
-		                			<input type="radio" name="mailonupdate_filtermethod" value="nolist" <?php print $rval['nolist']; ?>" /> <?php echo __('Don\'t filter plugins', 'mail-on-update'); ?><br />
-		                			<input type="radio" name="mailonupdate_filtermethod" value="blacklist" <?php print $rval['blacklist']; ?>" /> <?php echo __('Blacklist filter (exclude plugins)', 'mail-on-update'); ?><br />
-		                			<input type="radio" name="mailonupdate_filtermethod" value="whitelist" <?php print $rval['whitelist']; ?>" /> <?php echo __('Whitelist filter (include plugins)', 'mail-on-update'); ?><br />
+		                			<input type="radio" name="mailonupdate_filtermethod" value="nolist" <?php print $rval['nolist']; ?> /> <?php echo __('Don\'t filter plugins', 'mail-on-update'); ?><br />
+		                			<input type="radio" name="mailonupdate_filtermethod" value="blacklist" <?php print $rval['blacklist']; ?> /> <?php echo __('Blacklist filter (exclude plugins)', 'mail-on-update'); ?><br />
+		                			<input type="radio" name="mailonupdate_filtermethod" value="whitelist" <?php print $rval['whitelist']; ?> /> <?php echo __('Whitelist filter (include plugins)', 'mail-on-update'); ?><br />
 		                			<input type="checkbox" name="mailonupdate_exclinact" value="checked" <?php print $this->mou_exclinact; ?> /> <?php echo __('Don\'t validate inactive plugins', 'mail-on-update'); ?>							
 									</td>
 								</tr>
@@ -408,7 +408,7 @@ if (!class_exists('MailOnUpdate'))
 						<div class="inside">
 						    <table class="form-table">
 						    	<tr>
-									<td><textarea id="mailonupdate_pluginmonitor" name="mailonupdate_pluginmonitor" class="large-text code" readonly="readonly" cols="50" rows="10" /><?php print $this->mailonupdate_qualp(); ?></textarea></td>
+									<td><textarea id="mailonupdate_pluginmonitor" name="mailonupdate_pluginmonitor" class="large-text code" readonly="readonly" cols="50" rows="10"><?php print $this->mailonupdate_qualp(); ?></textarea></td>
 								</tr>
 								<tr>
 									<td>
