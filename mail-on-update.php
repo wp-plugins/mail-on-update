@@ -6,6 +6,7 @@ Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if
 Version: 4.3
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
+Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
 
 Copyright 2008-2011 Sven Kubiak, Matthias Kindler
 
