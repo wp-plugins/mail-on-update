@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 4.3
+Version: 4.5
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
@@ -42,9 +42,9 @@ if (!class_exists('MailOnUpdate'))
 	
 		function mailonupdate() {		
 			//load language file
-			if (function_exists('load_plugin_textdomain'))
-				load_plugin_textdomain('mail-on-update', PLUGINDIR.'/mail-on-update');
-				
+			if (function_exists('load_plugin_textdomain')) {
+				load_plugin_textdomain('mail-on-update', false, dirname( plugin_basename( __FILE__ ) ) );
+			}
 			//is wordpress at least version 2.8?
 			if (!MOUISWP28) {
 				add_action('admin_notices', array(&$this, 'wpVersionFailed'));
@@ -62,7 +62,7 @@ if (!class_exists('MailOnUpdate'))
 			if (function_exists('register_activation_hook'))
 				register_activation_hook(__FILE__, array(&$this, 'activate'));
 			if (function_exists('register_uninstall_hook'))
-				register_uninstall_hook(__FILE__, array(&$this, 'deactivate'));
+				register_uninstall_hook(__FILE__, 'deactivate');
 			if (function_exists('register_deactivation_hook'))
 				register_deactivation_hook(__FILE__, array(&$this, 'deactivate'));	
 		}
@@ -81,7 +81,7 @@ if (!class_exists('MailOnUpdate'))
 			add_option('mailonupdate', $options, '', 'yes');
 		}	
 		
-		function deactivate() {
+		static function deactivate() {
 			delete_option('mailonupdate');	
 		}	
 		
@@ -186,7 +186,7 @@ if (!class_exists('MailOnUpdate'))
 		}
 		
 		function mouAdminMenu() {
-    		add_options_page('Mail On Update', 'Mail On Update', 8, 'mail-on-update', array(&$this, 'mailonupdateConf')); 
+    		add_options_page('Mail On Update', 'Mail On Update', 'manage_options', 'mail-on-update', array(&$this, 'mailonupdateConf')); 
 		}
 	
 		//$sep=="\n"	:return qualified mail addresses for the form field
