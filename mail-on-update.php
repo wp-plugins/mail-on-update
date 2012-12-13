@@ -3,12 +3,12 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 4.5
+Version: 4.6.0
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
 
-Copyright 2008-2011 Sven Kubiak, Matthias Kindler
+Copyright 2008-2013 Sven Kubiak, Matthias Kindler
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -59,12 +59,15 @@ if (!class_exists('MailOnUpdate'))
 			add_action('admin_menu', array(&$this, 'mouAdminMenu'));
 			
 			//tell wp what to do when plugin is activated and deactivated
-			if (function_exists('register_activation_hook'))
+			if (function_exists('register_activation_hook')) {
 				register_activation_hook(__FILE__, array(&$this, 'activate'));
-			if (function_exists('register_uninstall_hook'))
+			}
+			if (function_exists('register_uninstall_hook')) {
 				register_uninstall_hook(__FILE__, 'deactivate');
-			if (function_exists('register_deactivation_hook'))
+			}
+			if (function_exists('register_deactivation_hook')) {
 				register_deactivation_hook(__FILE__, array(&$this, 'deactivate'));	
+			}
 		}
 		
 		function activate() {	
@@ -77,7 +80,6 @@ if (!class_exists('MailOnUpdate'))
 				'mou_filtermethod'	=> '',
 				'mou_filter'		=> '',
 			);
-			
 			add_option('mailonupdate', $options, '', 'yes');
 		}	
 		
@@ -213,10 +215,11 @@ if (!class_exists('MailOnUpdate'))
 		function mailonupdate_listOfCommaSeparatedRecipients() {
 			$list = $this->mailonupdate_validateRecipient($this->mou_mailto,',');
 		
-			if ("$list" !='')
+			if ("$list" !='') {
 				return $list;
-			else
+			} else {
 				return get_option("admin_email");
+			}
 		}
 	
 		//radio button check
@@ -243,11 +246,13 @@ if (!class_exists('MailOnUpdate'))
 			$plugin			= strtolower($plugin);
 			$filtermethod 	= $this->mou_filtermethod;
 		
-			if ($filtermethod == 'nolist')
+			if ($filtermethod == 'nolist') {
 				return true;
+			}
 		
-			if ($this->mou_exclinact != '' && !is_plugin_active($plugin_file))
+			if ($this->mou_exclinact != '' && !is_plugin_active($plugin_file)) {
 				return false;
+			}
 			
 			($filtermethod=='whitelist') ? $state  =false : $state = true;
 			
@@ -287,17 +292,18 @@ if (!class_exists('MailOnUpdate'))
 	
 		//the configuration page 
 		function mailonupdateConf() {
-			if (!current_user_can('manage_options'))
+			if (!current_user_can('manage_options')) {
 				wp_die(__('Sorry, but you have no permissions to change settings.','mail-on-update'));
+			}
 				
 			if (isset($_POST['submit'])){
-				if (isset($_POST['mailonupdate_mailto']))
-		        	$this->mou_mailto = $this->mailonupdate_validateRecipient($_POST['mailonupdate_mailto'], "\n");
-
-		   	$this->mou_singlenotification = $_POST['mailonupdate_singlenotification'];
+				if (isset($_POST['mailonupdate_mailto'])) {
+		        	$this->mou_mailto = $this->mailonupdate_validateRecipient($_POST['mailonupdate_mailto'], "\n");					
+				}
+			   	$this->mou_singlenotification = $_POST['mailonupdate_singlenotification'];
 		
 				if (isset( $_POST['mailonupdate_filter'])){
-		      $this->mou_filter 			= $_POST['mailonupdate_filter'];
+			      $this->mou_filter 			= $_POST['mailonupdate_filter'];
 					$this->mou_filtermethod 	= $_POST['mailonupdate_filtermethod']; 
 					$this->mou_exclinact		= $_POST['mailonupdate_exclinact'];
 				};
