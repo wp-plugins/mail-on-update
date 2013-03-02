@@ -2,16 +2,16 @@
 Contributors: kubi23
 Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
 Tested up to: 3.5.1
-Stable tag: 4.6.0
-Requires at least: 2.8
-Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions
+Stable tag: 5.0.0
+Requires at least: 3.0
+Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions, theme, themes, core
 
 Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new updates of plugins are available.
 
 == Description ==
  
-As of WordPress Version 2.5, WordPress automaticly checks if a new update for an installed plugin is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
-It uses the build-in update function to periodicly check for new versions at the wordpress plugin directory. If a new version is available, the WordPress-Admin will recieve an E-mail every 12 Hours, informing him which plugins needs to be updated.
+As of WordPress Version 2.5, WordPress automaticly checks if a new update for an installed plugin or theme is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
+It uses the build-in update function to periodicly check for new versions at the wordpress plugin and theme directory. If a new version is available, the WordPress-Admin will recieve an E-mail every 12 Hours, informing him which plugins needs to be updated.
 
 As of Plugin Version 2.0 you can set multilple Recipients and filter plugins according to your requirements.
 
@@ -38,6 +38,15 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 5.0.0 =
+* Plugin now requires WordPress 3.0 +
+* Plugin now checks for theme and WordPress Core updates
+* Updated functions for PHP > 5.3 compatibility
+* Notification is only send to users with update permission
+* First update call is initiated after activation, not 12 hours
+* Updated translations
+* GREAT THANKS TO HEIKO ADAMS!!!
 
 = 4.6.0 =
 * Minor Code clean up
