@@ -2,7 +2,7 @@
 Contributors: kubi23
 Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
 Tested up to: 3.5.1
-Stable tag: 5.1.0
+Stable tag: 5.2.0
 Requires at least: 3.0
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions, theme, themes, core
 
@@ -38,6 +38,9 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 5.2.0 =
+* Fixed slightly possible CSFR Bug
 
 = 5.1.0 =
 * Reverted to version 4.6.0 as 5.0.0 needs more testing

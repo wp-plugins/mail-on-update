@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 5.1.0
+Version: 5.2.0
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
@@ -190,36 +190,10 @@ if (!class_exists('MailOnUpdate'))
 		function mouAdminMenu() {
     		add_options_page('Mail On Update', 'Mail On Update', 'manage_options', 'mail-on-update', array(&$this, 'mailonupdateConf')); 
 		}
-	
-		//$sep=="\n"	:return qualified mail addresses for the form field
-		//$sep!="\n"	:return a $sep separated list of qualified mail addresses which are not disabled (by '-' at the end of the mail address) 
-		function mailonupdate_validateRecipient($maillist,$sep) {
-			$nmaillist = '';
-			$hit=0;
-			foreach (split("\n",$maillist) as $imail) {
-				$mail=trim($imail);	
-				
-				if ( preg_match("/^[a-z&auml;&ouml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9_.-]+@[a-z&auml;&ouml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9-]+.[a-z&auml;&auml;&uuml;A-Z&Auml;&Ouml;&Uuml;0-9-.]+\-{0,1}$/",$mail) ) {
-					if ($sep=="\n" || substr($mail,-1)!='-' ) {
-						if ($hit>0) {$nmaillist.=$sep;};
-							$nmaillist.=$mail;
-							$hit++;
-						};
-					};
-				};
-		
-			return $nmaillist;
-		}
-	
+
 		//notifier list
 		function mailonupdate_listOfCommaSeparatedRecipients() {
-			$list = $this->mailonupdate_validateRecipient($this->mou_mailto,',');
-		
-			if ("$list" !='') {
-				return $list;
-			} else {
-				return get_option("admin_email");
-			}
+			return get_option("admin_email");
 		}
 	
 		//radio button check
@@ -297,9 +271,6 @@ if (!class_exists('MailOnUpdate'))
 			}
 				
 			if (isset($_POST['submit'])){
-				if (isset($_POST['mailonupdate_mailto'])) {
-		        	$this->mou_mailto = $this->mailonupdate_validateRecipient($_POST['mailonupdate_mailto'], "\n");					
-				}
 			   	$this->mou_singlenotification = $_POST['mailonupdate_singlenotification'];
 		
 				if (isset( $_POST['mailonupdate_filter'])){
@@ -320,27 +291,11 @@ if (!class_exists('MailOnUpdate'))
 			
 				<div id="poststuff" class="ui-sortable">
 					<div class="postbox opened">
-						<h3><?php echo __('List of alternative recipients', 'mail-on-update'); ?></h3>
+						<h3><?php echo __('Notification settings', 'mail-on-update'); ?></h3>
 						<div class="inside">
 							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
 						    	<tr>
-									<td>
-									<?php 
-									
-									if ($this->mailonupdate_validateRecipient($this->mou_mailto,',') == '') {
-									
-										echo "<p>";
-										printf (__('Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override.'
-											,'mail-on-update')
-							            	, '<b>'.get_option("admin_email").'</b>'
-							            );
-							            
-										echo "</p>";
-									}
-									
-									?>
-									</td>
 									<td>
 									<script type="text/javascript">
 										/* <![CDATA[ */
@@ -356,17 +311,13 @@ if (!class_exists('MailOnUpdate'))
 									<a class="FlattrButton" style="display:none;" href="http://www.svenkubiak.de/mail-on-update/"></a>
 									</td>
 								</tr>
-								<tr>	
-									<td width="10"><textarea id="mailonupdate_mailto" name="mailonupdate_mailto" cols="40" rows="5"><?php echo $this->mou_mailto; ?></textarea></td>
-									<td valign="top">
-									<?php echo __('* Each E-Mail-Address has to appear on a single line', 'mail-on-update'); ?><br />
-									<?php echo __('* Invalid E-Mail-Addresses will be rejected', 'mail-on-update'); ?><br />
-		        					<?php echo __('* An E-Mail-Address with "-" at the end is not considered', 'mail-on-update'); ?><br />
-									<?php echo __('* Clear this field to set the default E-Mail-Address', 'mail-on-update'); ?>
-									</td>
-								</tr>
 								<tr>
 									<td valign="top">
+									<?php
+									echo __('Recipient of all notifications: ', 'mail-on-update');
+									echo get_option("admin_email");
+									echo "<br />";
+									?>
 		                			<label><input type="checkbox" name="mailonupdate_singlenotification" value="checked" <?php print $this->mou_singlenotification; ?> /> <?php echo __('Send only one notification per Update', 'mail-on-update'); ?></label>						
 									</td>
 								</tr>

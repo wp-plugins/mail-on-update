@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MailOnUpdate-ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-20 19:58+0100\n"
+"POT-Creation-Date: 2013-05-25 08:34+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <sk@svenkubiak.de>\n"
 "Language-Team: WordpressPlugins.ru\n"
@@ -17,145 +17,150 @@ msgstr ""
 "X-Poedit-Basepath: ./\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: mail-on-update.php:114
+#: mail-on-update.php:117
 #, fuzzy
 msgid "Your WordPress is to old. Mail On Update requires at least WordPress 2.8!"
 msgstr "Плагин \"Mail On Update\" требует WordPress версии не младше 2.8!"
 
-#: mail-on-update.php:151
+#: mail-on-update.php:154
 #, php-format
 msgid "A new version of %1$s is available."
 msgstr "Доступна новая версия плагина %1$s."
 
-#: mail-on-update.php:153
+#: mail-on-update.php:156
 #, php-format
 msgid "- Installed: %1$s, Current: %2$s"
 msgstr "- установленная версия: %1$s, текущая версия: %2$s"
 
-#: mail-on-update.php:157
+#: mail-on-update.php:160
 msgid "active"
 msgstr "активный"
 
-#: mail-on-update.php:157
-#: mail-on-update.php:276
+#: mail-on-update.php:160
+#: mail-on-update.php:256
 msgid "inactive"
 msgstr "неактивный"
 
-#: mail-on-update.php:158
+#: mail-on-update.php:161
 #, php-format
 msgid "A new version (%1$s) of %2$s is available. (%3s)"
 msgstr "Доступна новая версия (%1$s) плагина %2$s. (%3s)"
 
-#: mail-on-update.php:166
+#: mail-on-update.php:169
 msgid "Update your Plugins at"
 msgstr "Обновите ваши плагины по адресу:"
 
-#: mail-on-update.php:169
+#: mail-on-update.php:172
 msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
 msgstr "Также доступны обновления для плагинов, указанных ниже (для полноты картины, так как они не являются предметом данного уведомления)."
 
-#: mail-on-update.php:178
+#: mail-on-update.php:181
 #, php-format
 msgid "[%s] Plugin Update Notification"
 msgstr "[%s] Уведомление об обновлении плагинов WordPress"
 
-#: mail-on-update.php:290
+#: mail-on-update.php:270
 msgid "Sorry, but you have no permissions to change settings."
 msgstr "Извините, но у вас нет разрешения на изменение настроек."
 
-#: mail-on-update.php:305
+#: mail-on-update.php:283
 msgid "Mail On Update settings succsesfully saved."
 msgstr "Настройки Mail On Update успешно записаны."
 
-#: mail-on-update.php:312
+#: mail-on-update.php:290
 msgid "Mail On Update Settings"
 msgstr "Mail On Update Настройки"
 
-#: mail-on-update.php:316
-msgid "List of alternative recipients"
-msgstr "Список альтернативных получателей"
+#: mail-on-update.php:294
+msgid "Notification settings"
+msgstr ""
 
-#: mail-on-update.php:327
-#, php-format
-msgid "Since no alternative recipients are specified, the default address %s is assumed. Provide a list of alternative recipients to override."
-msgstr "Уведомления будут доставляться на имейл по умолчанию (%s) до тех пор, пока вы не укажите альтернативные имейл адреса."
+#: mail-on-update.php:317
+msgid "Recipient of all notifications: "
+msgstr ""
 
-#: mail-on-update.php:355
-msgid "* Each E-Mail-Address has to appear on a single line"
-msgstr "* Каждый имейл должен быть на новой строке"
-
-#: mail-on-update.php:356
-msgid "* Invalid E-Mail-Addresses will be rejected"
-msgstr "* Неправильные имейлы будут отклонены"
-
-#: mail-on-update.php:357
-msgid "* An E-Mail-Address with \"-\" at the end is not considered"
-msgstr "* Имейлы с \"-\" в конце не будут использоваться"
-
-#: mail-on-update.php:358
-msgid "* Clear this field to set the default E-Mail-Address"
-msgstr "* Очистите список, чтобы использовать имейл по умолчанию"
-
-#: mail-on-update.php:363
+#: mail-on-update.php:321
 msgid "Send only one notification per Update"
 msgstr ""
 
-#: mail-on-update.php:367
-#: mail-on-update.php:399
+#: mail-on-update.php:325
+#: mail-on-update.php:357
 msgid "Save"
 msgstr "Сохранить"
 
-#: mail-on-update.php:375
+#: mail-on-update.php:333
 msgid "Filters"
 msgstr "Фильтры"
 
-#: mail-on-update.php:382
+#: mail-on-update.php:340
 msgid "* A plugin is matched if the filter is a substring"
 msgstr "* Плагин выбран, если в его названии есть слова из фильтра (фильтр \"WP-\" выберет все плагины, в названии которых есть \"WP-\")"
 
-#: mail-on-update.php:383
+#: mail-on-update.php:341
 msgid "* A filter has to appear on a single line"
 msgstr "* Каждый фильтр должен быть на новой строке"
 
-#: mail-on-update.php:384
+#: mail-on-update.php:342
 msgid "* A filter is not case sensetive"
 msgstr "* Фильтры нечувствительны к регистру"
 
-#: mail-on-update.php:385
+#: mail-on-update.php:343
 msgid "* A filter is considered as a string and no regexp"
 msgstr "* Фильтры считаются строкой, а не регулярным выражением"
 
-#: mail-on-update.php:386
+#: mail-on-update.php:344
 msgid "* A filter with \"-\" at the end is not considered"
 msgstr "* Фильтры с \"-\" в конце не будут использоваться"
 
-#: mail-on-update.php:392
+#: mail-on-update.php:350
 msgid "Don't filter plugins"
 msgstr "Не использовать фильтры"
 
-#: mail-on-update.php:393
+#: mail-on-update.php:351
 msgid "Blacklist filter (exclude plugins)"
 msgstr "Черный cписок (исключить указанные плагины)"
 
-#: mail-on-update.php:394
+#: mail-on-update.php:352
 msgid "Whitelist filter (include plugins)"
 msgstr "Белый список (включить указанные плагины)"
 
-#: mail-on-update.php:395
+#: mail-on-update.php:353
 msgid "Don't validate inactive plugins"
 msgstr "Не проверять неактивные плагины"
 
-#: mail-on-update.php:407
+#: mail-on-update.php:365
 msgid "Plugins to validate"
 msgstr "Плагины для проверки"
 
-#: mail-on-update.php:415
+#: mail-on-update.php:373
 msgid "Plugin will be validated"
 msgstr "Плагин будет проверяться"
 
-#: mail-on-update.php:416
+#: mail-on-update.php:374
 msgid "Plugin will not be validated"
 msgstr "Плагин не будет проверяться"
+
+#~ msgid "List of alternative recipients"
+#~ msgstr "Список альтернативных получателей"
+
+#~ msgid ""
+#~ "Since no alternative recipients are specified, the default address %s is "
+#~ "assumed. Provide a list of alternative recipients to override."
+#~ msgstr ""
+#~ "Уведомления будут доставляться на имейл по умолчанию (%s) до тех пор, "
+#~ "пока вы не укажите альтернативные имейл адреса."
+
+#~ msgid "* Each E-Mail-Address has to appear on a single line"
+#~ msgstr "* Каждый имейл должен быть на новой строке"
+
+#~ msgid "* Invalid E-Mail-Addresses will be rejected"
+#~ msgstr "* Неправильные имейлы будут отклонены"
+
+#~ msgid "* An E-Mail-Address with \"-\" at the end is not considered"
+#~ msgstr "* Имейлы с \"-\" в конце не будут использоваться"
+
+#~ msgid "* Clear this field to set the default E-Mail-Address"
+#~ msgstr "* Очистите список, чтобы использовать имейл по умолчанию"
 
 #~ msgid "Inactive plugin"
 #~ msgstr "Неактивный плагин"
