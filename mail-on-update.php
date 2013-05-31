@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 5.2.0
+Version: 5.2.1
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
@@ -114,7 +114,7 @@ if (!class_exists('MailOnUpdate'))
 		}	
 		
 		function wpVersionFailed() {
-			echo "<div id='message' class='error fade'><p>".__('Your WordPress is to old. Mail On Update requires at least WordPress 2.8!','mail-on-update')."</p></div>";	
+			echo "<div id='message' class='error fade'><p>".__('Your WordPress is too old. Mail On Update requires at least WordPress 3.0!','mail-on-update')."</p></div>";	
 		}	
 	
 		function checkPlugins() {			
@@ -122,7 +122,7 @@ if (!class_exists('MailOnUpdate'))
 			if (time() < $this->mou_lastchecked + 43200)
 				return false;
 					
-			//inlcude wordpress update functions
+			//include wordpress update functions
 			@require_once ( ABSPATH . 'wp-admin/includes/update.php' );
 			@require_once ( ABSPATH . 'wp-admin/admin-functions.php' );			
 				

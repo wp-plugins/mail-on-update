@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yawasp de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-25 08:33+0100\n"
+"POT-Creation-Date: 2013-05-31 09:43+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <sk@svenkubiak.de>\n"
 "Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: mail-on-update.php:117
-msgid "Your WordPress is to old. Mail On Update requires at least WordPress 2.8!"
+msgid "Your WordPress is too old. Mail On Update requires at least WordPress 3.0!"
 msgstr "Dein WordPress ist zu alt. Mail On Update ben&ouml;tigt mind. WordPress 2.8!"
 
 #: mail-on-update.php:154

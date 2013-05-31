@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mail On Update v2.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-25 08:33+0100\n"
-"PO-Revision-Date: 2013-05-25 08:33+0100\n"
+"POT-Creation-Date: 2013-05-31 09:43+0100\n"
+"PO-Revision-Date: 2013-05-31 09:43+0100\n"
 "Last-Translator: Sven Kubiak <sk@svenkubiak.de>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 # @ mail-on-update
 #: mail-on-update.php:117
-msgid "Your WordPress is to old. Mail On Update requires at least WordPress 2.8!"
+msgid "Your WordPress is too old. Mail On Update requires at least WordPress 3.0!"
 msgstr "Votre version de Wordpress est trop vieille. Mail On Update nécessite au moins la version 2.8 de Wordpress."
 
 # @ mail-on-update
