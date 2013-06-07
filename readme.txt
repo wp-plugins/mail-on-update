@@ -43,7 +43,7 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
 * Fixed typos
 
 = 5.2.0 =
-* Fixed slightly possible CSFR Bug
+* Fixed slightly possible CSRF security vulnerability (CVE-2013-2107)
 
 = 5.1.0 =
 * Reverted to version 4.6.0 as 5.0.0 needs more testing
