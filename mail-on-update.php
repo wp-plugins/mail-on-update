@@ -3,10 +3,9 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 5.2.1
+Version: 5.2.2
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
-Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
 
 Copyright 2008-2013 Sven Kubiak, Matthias Kindler
 
@@ -295,22 +294,6 @@ if (!class_exists('MailOnUpdate'))
 						<div class="inside">
 							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
-						    	<tr>
-									<td>
-									<script type="text/javascript">
-										/* <![CDATA[ */
-										    (function() {
-										        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-										        s.type = 'text/javascript';
-										        s.async = true;
-										        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-										        t.parentNode.insertBefore(s, t);
-										    })();
-										/* ]]> */
-									</script>
-									<a class="FlattrButton" style="display:none;" href="http://www.svenkubiak.de/mail-on-update/"></a>
-									</td>
-								</tr>
 								<tr>
 									<td valign="top">
 									<?php
