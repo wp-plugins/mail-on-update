@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 5.2.2
+Version: 5.2.3
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://www.svenkubiak.de
 
@@ -201,7 +201,7 @@ if (!class_exists('MailOnUpdate'))
 				$state = $this->mou_filtermethod;
 				$hit = false;
 				
-				foreach (split(' ',$state_list) as $istate){
+				foreach (explode(' ',$state_list) as $istate){
 					if ($state==$istate){
 						$res[$istate] = $checked;
 						$hit=true;
@@ -229,7 +229,7 @@ if (!class_exists('MailOnUpdate'))
 			
 			($filtermethod=='whitelist') ? $state  =false : $state = true;
 			
-			foreach (split("\n",$this->mou_filter) as $filter) {
+			foreach (explode("\n",$this->mou_filter) as $filter) {
 				$filter=trim(strtolower($filter));
 				if (!empty($filter)){
 					if (strpos($filter,-1)!='-') {
