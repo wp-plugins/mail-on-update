@@ -1,8 +1,8 @@
 === Plugin Name ===
 Contributors: kubi23
 Donate link: https://flattr.com/thing/7653/Mail-On-Update-WordPress-Plugin
-Tested up to: 3.6.1	
-Stable tag: 5.2.3
+Tested up to: 3.7.1
+Stable tag: 5.2.4
 Requires at least: 3.0
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions, theme, themes, core
 
@@ -38,6 +38,11 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 5.2.4 =
+* Re-added flattr button
+* Minor code cleanup
+* Added licence tag
 
 = 5.2.3 =
 * Replaced deprecated PHP function split (Thanks to Simon Hampel)

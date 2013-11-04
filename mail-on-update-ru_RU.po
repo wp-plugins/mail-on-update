@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MailOnUpdate-ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-31 09:43+0100\n"
+"POT-Creation-Date: 2013-11-04 07:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <sk@svenkubiak.de>\n"
 "Language-Team: WordpressPlugins.ru\n"
@@ -17,125 +17,125 @@ msgstr ""
 "X-Poedit-Basepath: ./\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: mail-on-update.php:117
+#: mail-on-update.php:112
 msgid "Your WordPress is too old. Mail On Update requires at least WordPress 3.0!"
-msgstr "Плагин \"Mail On Update\" требует WordPress версии не младше 2.8!"
+msgstr "Плагин \"Mail On Update\" требует WordPress версии не младше 3.0!"
 
-#: mail-on-update.php:154
+#: mail-on-update.php:148
 #, php-format
 msgid "A new version of %1$s is available."
 msgstr "Доступна новая версия плагина %1$s."
 
-#: mail-on-update.php:156
+#: mail-on-update.php:150
 #, php-format
 msgid "- Installed: %1$s, Current: %2$s"
 msgstr "- установленная версия: %1$s, текущая версия: %2$s"
 
-#: mail-on-update.php:160
+#: mail-on-update.php:154
 msgid "active"
 msgstr "активный"
 
-#: mail-on-update.php:160
-#: mail-on-update.php:256
+#: mail-on-update.php:154
+#: mail-on-update.php:246
 msgid "inactive"
 msgstr "неактивный"
 
-#: mail-on-update.php:161
+#: mail-on-update.php:155
 #, php-format
 msgid "A new version (%1$s) of %2$s is available. (%3s)"
 msgstr "Доступна новая версия (%1$s) плагина %2$s. (%3s)"
 
-#: mail-on-update.php:169
+#: mail-on-update.php:163
 msgid "Update your Plugins at"
 msgstr "Обновите ваши плагины по адресу:"
 
-#: mail-on-update.php:172
+#: mail-on-update.php:166
 msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
 msgstr "Также доступны обновления для плагинов, указанных ниже (для полноты картины, так как они не являются предметом данного уведомления)."
 
-#: mail-on-update.php:181
+#: mail-on-update.php:175
 #, php-format
 msgid "[%s] Plugin Update Notification"
 msgstr "[%s] Уведомление об обновлении плагинов WordPress"
 
-#: mail-on-update.php:270
+#: mail-on-update.php:259
 msgid "Sorry, but you have no permissions to change settings."
 msgstr "Извините, но у вас нет разрешения на изменение настроек."
 
-#: mail-on-update.php:283
+#: mail-on-update.php:272
 msgid "Mail On Update settings succsesfully saved."
 msgstr "Настройки Mail On Update успешно записаны."
 
-#: mail-on-update.php:290
+#: mail-on-update.php:279
 msgid "Mail On Update Settings"
 msgstr "Mail On Update Настройки"
 
-#: mail-on-update.php:294
+#: mail-on-update.php:283
 msgid "Notification settings"
 msgstr ""
 
-#: mail-on-update.php:317
+#: mail-on-update.php:290
 msgid "Recipient of all notifications: "
 msgstr ""
 
-#: mail-on-update.php:321
+#: mail-on-update.php:294
 msgid "Send only one notification per Update"
 msgstr ""
 
-#: mail-on-update.php:325
-#: mail-on-update.php:357
+#: mail-on-update.php:298
+#: mail-on-update.php:330
 msgid "Save"
 msgstr "Сохранить"
 
-#: mail-on-update.php:333
+#: mail-on-update.php:306
 msgid "Filters"
 msgstr "Фильтры"
 
-#: mail-on-update.php:340
+#: mail-on-update.php:313
 msgid "* A plugin is matched if the filter is a substring"
 msgstr "* Плагин выбран, если в его названии есть слова из фильтра (фильтр \"WP-\" выберет все плагины, в названии которых есть \"WP-\")"
 
-#: mail-on-update.php:341
+#: mail-on-update.php:314
 msgid "* A filter has to appear on a single line"
 msgstr "* Каждый фильтр должен быть на новой строке"
 
-#: mail-on-update.php:342
+#: mail-on-update.php:315
 msgid "* A filter is not case sensetive"
 msgstr "* Фильтры нечувствительны к регистру"
 
-#: mail-on-update.php:343
+#: mail-on-update.php:316
 msgid "* A filter is considered as a string and no regexp"
 msgstr "* Фильтры считаются строкой, а не регулярным выражением"
 
-#: mail-on-update.php:344
+#: mail-on-update.php:317
 msgid "* A filter with \"-\" at the end is not considered"
 msgstr "* Фильтры с \"-\" в конце не будут использоваться"
 
-#: mail-on-update.php:350
+#: mail-on-update.php:323
 msgid "Don't filter plugins"
 msgstr "Не использовать фильтры"
 
-#: mail-on-update.php:351
+#: mail-on-update.php:324
 msgid "Blacklist filter (exclude plugins)"
 msgstr "Черный cписок (исключить указанные плагины)"
 
-#: mail-on-update.php:352
+#: mail-on-update.php:325
 msgid "Whitelist filter (include plugins)"
 msgstr "Белый список (включить указанные плагины)"
 
-#: mail-on-update.php:353
+#: mail-on-update.php:326
 msgid "Don't validate inactive plugins"
 msgstr "Не проверять неактивные плагины"
 
-#: mail-on-update.php:365
+#: mail-on-update.php:338
 msgid "Plugins to validate"
 msgstr "Плагины для проверки"
 
-#: mail-on-update.php:373
+#: mail-on-update.php:346
 msgid "Plugin will be validated"
 msgstr "Плагин будет проверяться"
 
-#: mail-on-update.php:374
+#: mail-on-update.php:347
 msgid "Plugin will not be validated"
 msgstr "Плагин не будет проверяться"
 

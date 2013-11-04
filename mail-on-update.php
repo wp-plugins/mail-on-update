@@ -2,10 +2,12 @@
 /*
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
-Description: Sends an E-Mail Notification to one or multiple E-Mail-Addresses if new versions of plugins are available.
-Version: 5.2.3
+Description: Sends an eMail notification to one or multiple eMail addresses if new versions of plugins are available.
+Version: 5.2.4
 Author: Sven Kubiak, Matthias Kindler
-Author URI: http://www.svenkubiak.de
+Author URI: http://svenkubiak.de
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Copyright 2008-2013 Sven Kubiak, Matthias Kindler
 
@@ -24,13 +26,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 global $wp_version;
-define('MOUISWP28', version_compare($wp_version, '2.8', '>='));
 define('MOUISWP30', version_compare($wp_version, '3.0', '>='));
 
 if (!class_exists('MailOnUpdate'))
 {
 	class MailOnUpdate {
-		
 		var $mou_lastchecked;
 		var $mou_lastmessage;
 		var $mou_singlenotification;
@@ -40,12 +40,12 @@ if (!class_exists('MailOnUpdate'))
 		var $mou_filter;
 	
 		function mailonupdate() {		
-			//load language file
 			if (function_exists('load_plugin_textdomain')) {
 				load_plugin_textdomain('mail-on-update', false, dirname( plugin_basename( __FILE__ ) ) );
 			}
-			//is wordpress at least version 2.8?
-			if (!MOUISWP28) {
+			
+			//is wordpress at least version 3.0?
+			if (!MOUISWP30) {
 				add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 				return false;
 			}			
@@ -53,11 +53,9 @@ if (!class_exists('MailOnUpdate'))
 			//load nospamnx options
 			$this->getOptions();
 			
-			//add wordpress aktions
 			add_action('wp_footer', array(&$this, 'checkPlugins'));
 			add_action('admin_menu', array(&$this, 'mouAdminMenu'));
 			
-			//tell wp what to do when plugin is activated and deactivated
 			if (function_exists('register_activation_hook')) {
 				register_activation_hook(__FILE__, array(&$this, 'activate'));
 			}
@@ -149,7 +147,6 @@ if (!class_exists('MailOnUpdate'))
 			//loop through available plugin updates	
 			foreach ($updates->response as $pluginfile => $update) {	
 				if ($this->mailonupdate_pqual($plugins[$pluginfile]['Name'], $pluginfile)) {
-					//append available updates to notification message
 					$message .= sprintf( __('A new version of %1$s is available.', 'mail-on-update'), trim($plugins[$pluginfile]['Name']));
 					$message .= "\n";
 					$message .= sprintf( __('- Installed: %1$s, Current: %2$s', 'mail-on-update'), $plugins[$pluginfile]['Version'], $update->new_version);
@@ -190,12 +187,10 @@ if (!class_exists('MailOnUpdate'))
     		add_options_page('Mail On Update', 'Mail On Update', 'manage_options', 'mail-on-update', array(&$this, 'mailonupdateConf')); 
 		}
 
-		//notifier list
 		function mailonupdate_listOfCommaSeparatedRecipients() {
 			return get_option("admin_email");
 		}
 	
-		//radio button check
 		function rbc($option,$state_list,$default) {
 				$checked = 'checked="checked"';
 				$state = $this->mou_filtermethod;
@@ -214,7 +209,6 @@ if (!class_exists('MailOnUpdate'))
 			return $res;
 		}
 	
-		//plugin qualified?
 		function mailonupdate_pqual($plugin, $plugin_file) {
 			$plugin			= strtolower($plugin);
 			$filtermethod 	= $this->mou_filtermethod;
@@ -244,7 +238,6 @@ if (!class_exists('MailOnUpdate'))
 			return $state;
 		}
 	
-		//show qualified plugins
 		function mailonupdate_qualp() {
 			$l = '';
 			$all_plugins = get_plugins();
@@ -263,7 +256,6 @@ if (!class_exists('MailOnUpdate'))
 			return $l;
 		} 
 	
-		//the configuration page 
 		function mailonupdateConf() {
 			if (!current_user_can('manage_options')) {
 				wp_die(__('Sorry, but you have no permissions to change settings.','mail-on-update'));
@@ -294,6 +286,7 @@ if (!class_exists('MailOnUpdate'))
 						<div class="inside">
 							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
+						    	<tr><td><script id='fb3sxop'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=svenkubiak&url=http%3A%2F%2Fwordpress.org%2Fplugins%2Fmail-on-update%2F';f.title='Flattr';f.height=62;f.width=55;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fb3sxop');</script></td></tr>
 								<tr>
 									<td valign="top">
 									<?php
