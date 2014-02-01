@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an eMail notification to one or multiple eMail addresses if new versions of plugins are available.
-Version: 5.2.4
+Version: 5.2.5
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://svenkubiak.de
 License: GPLv2 or later
@@ -121,7 +121,7 @@ if (!class_exists('MailOnUpdate'))
 					
 			//include wordpress update functions
 			@require_once ( ABSPATH . 'wp-admin/includes/update.php' );
-			@require_once ( ABSPATH . 'wp-admin/admin-functions.php' );			
+			@require_once ( ABSPATH . 'wp-admin/includes/admin.php');		
 				
 			//call the wordpress update function
 			if (MOUISWP30) {
