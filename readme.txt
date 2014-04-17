@@ -1,6 +1,6 @@
 === Plugin Name ===
 Contributors: kubi23
-Tested up to: 3.8.1
+Tested up to: 3.9.0
 Stable tag: 5.2.5
 Requires at least: 3.0
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions
