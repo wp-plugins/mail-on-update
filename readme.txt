@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: kubi23
-Tested up to: 3.9.0
-Stable tag: 5.2.5
+Tested up to: 4.1.0
+Stable tag: 5.2.6
 Requires at least: 3.0
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions
 
@@ -37,6 +37,9 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 5.2.6 =
+* Tested and released agains WP 4.1
 
 = 5.2.5 =
 * Removed deprecated function call (Thanks to Patabugen)

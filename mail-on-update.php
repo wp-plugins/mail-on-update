@@ -3,13 +3,13 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an eMail notification to one or multiple eMail addresses if new versions of plugins are available.
-Version: 5.2.5
+Version: 5.2.6
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://svenkubiak.de
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Copyright 2008-2013 Sven Kubiak, Matthias Kindler
+Copyright 2008-2015 Sven Kubiak, Matthias Kindler
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ if (!class_exists('MailOnUpdate'))
 				return false;
 			}			
 				
-			//load nospamnx options
+			//load mail on update options
 			$this->getOptions();
 			
 			add_action('wp_footer', array(&$this, 'checkPlugins'));
