@@ -1,24 +1,21 @@
 === Plugin Name ===
 Contributors: kubi23
 Tested up to: 4.1.0
-Stable tag: 5.2.6
+Stable tag: 5.3.0
 Requires at least: 3.0
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions
 
-Sends an E-Mail to one (i.e. WordPress admin) or multiple E-Mail Addresses if new updates of plugins are available.
+Sends an e-Mail to one or multiple administrators if new updates of plugins are available.
 
 == Description ==
  
-As of WordPress Version 2.5, WordPress automaticly checks if a new update for an installed plugin or theme is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
-It uses the build-in update function to periodicly check for new versions at the wordpress plugin and theme directory. If a new version is available, the WordPress-Admin will recieve an E-mail every 12 Hours, informing him which plugins needs to be updated.
-
-As of Plugin Version 2.0 you can set multilple Recipients and filter plugins according to your requirements.
+Since WordPress Version 2.5, WordPress automaticly checks if a new update for an installed plugin is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
+It uses the build-in update function to periodicly check for new versions at the wordpress plugin directory. If a new version is available, either a single or multiple administrators will recieve an e-mail, informing them which plugins needs to be updated.
 
 = Available Languages  =
 
 * German
 * English
-* French
 
 == Installation ==
 
@@ -37,6 +34,15 @@ Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E
  
 
 == Changelog ==
+
+= 5.3.0 =
+* Added option to select multiple admin recipients
+* Remove Flattr button from backend and moved it to email footer
+* Fixed bug that reseted the settings when plugin was deactivated
+* Added nonce check to form
+* Removed unmanged translations
+* Updated translations
+* Minor code cleanup
 
 = 5.2.6 =
 * Tested and released agains WP 4.1

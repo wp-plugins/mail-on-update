@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an eMail notification to one or multiple eMail addresses if new versions of plugins are available.
-Version: 5.2.6
+Version: 5.3.0
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://svenkubiak.de
 License: GPLv2 or later
@@ -60,10 +60,7 @@ if (!class_exists('MailOnUpdate'))
 				register_activation_hook(__FILE__, array(&$this, 'activate'));
 			}
 			if (function_exists('register_uninstall_hook')) {
-				register_uninstall_hook(__FILE__, 'deactivate');
-			}
-			if (function_exists('register_deactivation_hook')) {
-				register_deactivation_hook(__FILE__, array(&$this, 'deactivate'));	
+				register_uninstall_hook(__FILE__, 'uninstall');
 			}
 		}
 		
@@ -80,7 +77,7 @@ if (!class_exists('MailOnUpdate'))
 			add_option('mailonupdate', $options, '', 'yes');
 		}	
 		
-		static function deactivate() {
+		static function uninstall() {
 			delete_option('mailonupdate');	
 		}	
 		
@@ -116,8 +113,9 @@ if (!class_exists('MailOnUpdate'))
 	
 		function checkPlugins() {			
 			//is last check more than 12 hours ago?
-			if (time() < $this->mou_lastchecked + 43200)
-				return false;
+			if (time() < $this->mou_lastchecked + 43200) {
+				return false;	
+			}
 					
 			//include wordpress update functions
 			@require_once ( ABSPATH . 'wp-admin/includes/update.php' );
@@ -158,7 +156,7 @@ if (!class_exists('MailOnUpdate'))
 				};
 			}
 
-			if ($message!='' && ($this->mou_singlenotification == '' || ($message != $this->mou_lastmessage && $this->mou_singlenotification != ''))) {	
+			if ($message != '' && ($this->mou_singlenotification == '' || ($message != $this->mou_lastmessage && $this->mou_singlenotification != ''))) {	
 				$this->mou_lastmessage = $message;
 
 				//append siteurl to notfication e-mail
@@ -168,6 +166,7 @@ if (!class_exists('MailOnUpdate'))
 					$message.= "\n\n".__('There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness.', 'mail-on-update')."\n".$pluginNotVaildated;
 				};
 				
+				$message .= "\n\n---\nIf this plugin is useful to you, you can support further development by using Flattr. Thank you!\nhttps://flattr.com/thing/2511359/WordPress-Mail-On-Update-WordPress-Plugins";
 				//set mail header for notification message
 				$sender 	= 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
 				$from 		= "From: \"$sender\" <$sender>";	
@@ -186,9 +185,21 @@ if (!class_exists('MailOnUpdate'))
 		function mouAdminMenu() {
     		add_options_page('Mail On Update', 'Mail On Update', 'manage_options', 'mail-on-update', array(&$this, 'mailonupdateConf')); 
 		}
+		
+		function verifyNonce($nonce) {
+			if (!wp_verify_nonce($nonce, 'mailonupdate-nonce')) {
+				wp_die(__('Security-Check failed.','mail-on-update'), '', array('response' => 403));
+			}
+			
+			return true;
+		}
 
 		function mailonupdate_listOfCommaSeparatedRecipients() {
-			return get_option("admin_email");
+			if (empty($this->mou_mailto)) {
+				return get_option("admin_email");
+			}
+			
+			return $this->mou_mailto;
 		}
 	
 		function rbc($option,$state_list,$default) {
@@ -261,11 +272,35 @@ if (!class_exists('MailOnUpdate'))
 				wp_die(__('Sorry, but you have no permissions to change settings.','mail-on-update'));
 			}
 				
-			if (isset($_POST['submit'])){
+			(isset($_REQUEST['_wpnonce'])) ? $nonce = $_REQUEST['_wpnonce'] : $nonce = '';
+			if (isset($_POST['submit']) && $this->verifyNonce($nonce)){
 			   	$this->mou_singlenotification = $_POST['mailonupdate_singlenotification'];
-		
+				
+				$recipients = array();
+				foreach ($_POST['mailonupdate_recipients'] as $selectedOption) {
+					$user = get_user_by( 'id', $selectedOption );
+					if (!empty($user)) {
+						foreach ($user->roles as $role) {
+							if ($role == 'administrator') {
+								$recipients [] = $user->user_email;
+							}
+						}
+					}
+				}
+				
+				$mailto = "";
+				$lastElement = end($recipients);
+				foreach ($recipients as $recipient) {
+					$mailto .= $recipient;
+					if ($recipient != $lastElement) {
+						$mailto .= ",";
+					}
+				}
+				
+				$this->mou_mailto = $mailto;
+				
 				if (isset( $_POST['mailonupdate_filter'])){
-			      $this->mou_filter 			= $_POST['mailonupdate_filter'];
+			 		$this->mou_filter 			= $_POST['mailonupdate_filter'];
 					$this->mou_filtermethod 	= $_POST['mailonupdate_filtermethod']; 
 					$this->mou_exclinact		= $_POST['mailonupdate_exclinact'];
 				};
@@ -273,27 +308,93 @@ if (!class_exists('MailOnUpdate'))
 				$this->setOptions();
 				echo '<div id="message" class="updated fade"><p><strong>'. __('Mail On Update settings succsesfully saved.', 'mail-on-update') .'</strong></p></div>';
 			};
+
+			$mailtos = explode ( "," , $this->mou_mailto );
+			$users = array();
+			foreach ($mailtos as $mailto) {
+				$user = get_user_by( 'email', $mailto );
+				$users [] = $user;
+				$exclude .= $user->ID . ",";
+			}
+			$administrators = get_users( 'role=administrator&exclude='.$exclude );
+			$nonce = wp_create_nonce('mailonupdate-nonce');
 			
 			?>
-			
+
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+			<script type="text/javascript">  
+			$( document ).ready(function() {
+				 $('#remove').click(function() {  
+					var value = $('#select1 option:selected').val();
+					if ($("#select2 option[value='" + value + "']").length <= 0) {
+						return !$('#select1 option:selected').remove().appendTo('#select2'); 
+					} else {
+						return !$('#select1 option:selected').remove(); 
+					} 
+				});  
+			  	$('#add').click(function() {
+					var value = $('#select2 option:selected').val();
+					if ($("#select1 option[value='" + value + "']").length <= 0) {
+						return !$('#select2 option:selected').remove().appendTo('#select1'); 
+					} else {
+						return !$('#select2 option:selected').remove(); 
+					}  
+				});
+				
+				$('#mailonupdate-conf').submit(function() {  
+					$('#select1 option').each(function(i) {  
+						$(this).attr("selected", "selected");  
+					});  
+				});
+			});
+			</script>
 			<div class="wrap">
 				<div id="icon-options-general" class="icon32"></div>
 				<h2><?php echo __('Mail On Update Settings', 'mail-on-update'); ?></h2>
-			
 				<div id="poststuff" class="ui-sortable">
 					<div class="postbox opened">
 						<h3><?php echo __('Notification settings', 'mail-on-update'); ?></h3>
 						<div class="inside">
-							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
+							<form action="options-general.php?page=mail-on-update&_wpnonce=<?php echo $nonce ?>" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
-						    	<tr><td><script id='fb3sxop'>(function(i){var f,s=document.getElementById(i);f=document.createElement('iframe');f.src='//api.flattr.com/button/view/?uid=svenkubiak&url=http%3A%2F%2Fwordpress.org%2Fplugins%2Fmail-on-update%2F';f.title='Flattr';f.height=62;f.width=55;f.style.borderWidth=0;s.parentNode.insertBefore(f,s);})('fb3sxop');</script></td></tr>
+						    	<tr>
+									<td><?php echo __('Selected recipients', 'mail-on-update'); ?></td>
+								</tr>
+								<tr>
+									<td>
+										<select style="width: 100%" multiple id="select1" name="mailonupdate_recipients[]">  
+										<?php
+											foreach ($users as $user) {
+												if (!empty($user)) {
+								            		echo "<option value='".$user->ID."'>".$user->display_name." (".$user->user_email.")</option>";
+												}
+											}	
+										?> 
+									  	</select>  
+										<br /><button class="button-secondary" style="width: 100%" id="remove"><?php echo __('Remove', 'mail-on-update'); ?></button>
+									</td>
+								</tr>
+						    	<tr>
+									<td><?php echo __('Available recipients', 'mail-on-update'); ?></td>
+								</tr>								
+								<tr>
+									<td>
+										<select style="width: 100%" multiple id="select2">
+										<?php
+										foreach ($administrators as $administrator) {
+											if (!empty($administrator)) {
+							            		echo "<option value='".$administrator->ID."'>".$administrator->display_name." (".$administrator->user_email.")</option>";	
+											}
+										}
+										?>
+										</select>  
+									  	<br /><button class="button-secondary" style="width: 100%" id="add"><?php echo __('Add', 'mail-on-update'); ?></button>
+								</tr>
+						    	<tr>
+									<td><?php echo __('You can select multiple administrative users as a recipient. If no recipient is selected, the notification will be send to:', 'mail-on-update'); ?>&nbsp;<?php echo get_option("admin_email") ?></td>
+								</tr>								
 								<tr>
 									<td valign="top">
-									<?php
-									echo __('Recipient of all notifications: ', 'mail-on-update');
-									echo get_option("admin_email");
-									echo "<br />";
-									?>
 		                			<label><input type="checkbox" name="mailonupdate_singlenotification" value="checked" <?php print $this->mou_singlenotification; ?> /> <?php echo __('Send only one notification per Update', 'mail-on-update'); ?></label>						
 									</td>
 								</tr>
@@ -303,12 +404,11 @@ if (!class_exists('MailOnUpdate'))
 						</div>
 					</div>
 				</div>	
-				
 				<div id="poststuff" class="ui-sortable">
 					<div class="postbox opened">
 						<h3><?php echo __('Filters', 'mail-on-update'); ?></h3>
 						<div class="inside">
-							<form action="options-general.php?page=mail-on-update" method="post" id="mailonupdate-conf">
+							<form action="options-general.php?page=mail-on-update&_wpnonce=<?php echo $nonce ?>" method="post" id="mailonupdate-conf">
 						    <table class="form-table">
 								<tr>
 									<td width="10"><textarea id="mailonupdate_filter" name="mailonupdate_filter" cols="40" rows="5"><?php echo $this->mou_filter; ?></textarea></td>
@@ -335,7 +435,6 @@ if (!class_exists('MailOnUpdate'))
 						</div>
 					</div>
 				</div>
-	
 				<div id="poststuff" class="ui-sortable">
 					<div class="postbox opened">
 						<h3><?php echo __('Plugins to validate', 'mail-on-update'); ?></h3>
@@ -355,9 +454,7 @@ if (!class_exists('MailOnUpdate'))
 					</div>
 				</div>			
 			</div>				
-		
 		<?php
-	
 		}
 	}
 	$mou = new MailOnUpdate();

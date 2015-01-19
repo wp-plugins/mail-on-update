@@ -1,25 +1,27 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Yawasp de_DE\n"
+"Project-Id-Version: Mail On Update de_DE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-04 07:33+0100\n"
+"POT-Creation-Date: 2015-01-19 13:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Sven Kubiak <sk@svenkubiak.de>\n"
-"Language-Team: Sven Kubiak <mail@svenkubiak.de>\n"
+"Language-Team: Sven Kubiak <sk@svenkubiak.de>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-Basepath: ./\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: mail-on-update.php:112
-msgid "Your WordPress is too old. Mail On Update requires at least WordPress 3.0!"
-msgstr "Dein WordPress ist zu alt. Mail On Update ben&ouml;tigt mind. WordPress 3.0!"
+#: mail-on-update.php:111
+msgid ""
+"Your WordPress is too old. Mail On Update requires at least WordPress 3.0!"
+msgstr ""
+"Dein WordPress ist zu alt. Mail On Update ben&ouml;tigt mind. WordPress 3.0!"
 
 #: mail-on-update.php:148
 #, php-format
@@ -35,8 +37,7 @@ msgstr "- Installiert: %1$s, Aktuell: %2$s"
 msgid "active"
 msgstr "aktiv"
 
-#: mail-on-update.php:154
-#: mail-on-update.php:246
+#: mail-on-update.php:154 mail-on-update.php:259
 msgid "inactive"
 msgstr "inaktiv"
 
@@ -50,94 +51,129 @@ msgid "Update your Plugins at"
 msgstr "Aktualisiere deine Plugins auf"
 
 #: mail-on-update.php:166
-msgid "There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness."
-msgstr "Für die unten aufgeführten Plugins gibt es ebenfalls Aktualisiereungen. Diese werden allerdings nur der Vollständigkeit angezeigt, da sie inaktiv sind oder gefiltert werden."
+msgid ""
+"There are also updates available for the plugins below. However, these "
+"plugins are of no concern for this notifier and the information is just for "
+"completeness."
+msgstr ""
+"Für die unten aufgeführten Plugins gibt es ebenfalls Aktualisiereungen. "
+"Diese werden allerdings nur der Vollständigkeit angezeigt, da sie inaktiv "
+"sind oder gefiltert werden."
 
-#: mail-on-update.php:175
+#: mail-on-update.php:176
 #, php-format
 msgid "[%s] Plugin Update Notification"
-msgstr "Plugin Update Benachrichtigung"
+msgstr "[%s] Plugin Update Benachrichtigung"
 
-#: mail-on-update.php:259
-msgid "Sorry, but you have no permissions to change settings."
-msgstr "Sorry, aber Du hast keine Berechtigung um Einstellungen zu &auml;ndern."
+#: mail-on-update.php:191
+msgid "Security-Check failed."
+msgstr "Sicherheits-&Uuml;berpr&uuml;fung fehlgeschlagen."
 
 #: mail-on-update.php:272
+msgid "Sorry, but you have no permissions to change settings."
+msgstr ""
+"Sorry, aber Du hast keine Berechtigung um Einstellungen zu &auml;ndern."
+
+#: mail-on-update.php:309
 msgid "Mail On Update settings succsesfully saved."
 msgstr "Mail On Update Einstellungen erfolgreich gespeichert."
 
-#: mail-on-update.php:279
+#: mail-on-update.php:353
 msgid "Mail On Update Settings"
 msgstr "Mail On Update Einstellungen"
 
-#: mail-on-update.php:283
+#: mail-on-update.php:356
 msgid "Notification settings"
 msgstr "Benachrichtigungseinstellungen"
 
-#: mail-on-update.php:290
-msgid "Recipient of all notifications: "
-msgstr "Empf&auml;nger der Benachrichtigungen:"
+#: mail-on-update.php:361
+msgid "Selected recipients"
+msgstr "Ausgew&auml;hlte Empf&auml;nger"
 
-#: mail-on-update.php:294
+#: mail-on-update.php:374
+msgid "Remove"
+msgstr "Entfernen"
+
+#: mail-on-update.php:378
+msgid "Available recipients"
+msgstr "Verf&ouml;gbare Empf&auml;nger"
+
+#: mail-on-update.php:391
+msgid "Add"
+msgstr "Hinzuf&ouml;gen"
+
+#: mail-on-update.php:394
+msgid ""
+"You can select multiple administrative users as a recipient. If no recipient "
+"is selected, the notification will be send to:"
+msgstr ""
+"Du kannst mehrere administrative Benutzer als Empf&auml;nger auswählen. Wenn "
+"kein Empf&auml;nger ausgew&auml;hlt ist, wird die Benachrichtigung an "
+"folgende Adresse versendet:"
+
+#: mail-on-update.php:398
 msgid "Send only one notification per Update"
 msgstr "Nur eine Benachrichtigung pro Update"
 
-#: mail-on-update.php:298
-#: mail-on-update.php:330
+#: mail-on-update.php:402 mail-on-update.php:433
 msgid "Save"
 msgstr "Speichern"
 
-#: mail-on-update.php:306
+#: mail-on-update.php:409
 msgid "Filters"
 msgstr "Filter"
 
-#: mail-on-update.php:313
+#: mail-on-update.php:416
 msgid "* A plugin is matched if the filter is a substring"
-msgstr "* Ein Plugin wird ber&uuml;cksichtigt, wenn der Filter ein Teilstring ist"
+msgstr ""
+"* Ein Plugin wird ber&uuml;cksichtigt, wenn der Filter ein Teilstring ist"
 
-#: mail-on-update.php:314
+#: mail-on-update.php:417
 msgid "* A filter has to appear on a single line"
 msgstr "* Ein Filter muss in einer Zeile eingegeben werden"
 
-#: mail-on-update.php:315
+#: mail-on-update.php:418
 msgid "* A filter is not case sensetive"
 msgstr "* Ein Filter ist nicht case-sensitiv"
 
-#: mail-on-update.php:316
+#: mail-on-update.php:419
 msgid "* A filter is considered as a string and no regexp"
 msgstr "* Ein Filter wird als String und nicht als Regexp berücksichtigt"
 
-#: mail-on-update.php:317
+#: mail-on-update.php:420
 msgid "* A filter with \"-\" at the end is not considered"
 msgstr "* Ein Filter mit \"-\" am Ende wird nicht berücksichtigt"
 
-#: mail-on-update.php:323
+#: mail-on-update.php:426
 msgid "Don't filter plugins"
 msgstr "Plugins nicht filtern"
 
-#: mail-on-update.php:324
+#: mail-on-update.php:427
 msgid "Blacklist filter (exclude plugins)"
 msgstr "Blacklist Filter (Plugins ausschlie&szlig;en)"
 
-#: mail-on-update.php:325
+#: mail-on-update.php:428
 msgid "Whitelist filter (include plugins)"
 msgstr "Whitelist Filter (Plugins einbeziehen)"
 
-#: mail-on-update.php:326
+#: mail-on-update.php:429
 msgid "Don't validate inactive plugins"
 msgstr "Inaktive Plugins nicht validieren"
 
-#: mail-on-update.php:338
+#: mail-on-update.php:440
 msgid "Plugins to validate"
 msgstr "Zu validierende Plugins"
 
-#: mail-on-update.php:346
+#: mail-on-update.php:448
 msgid "Plugin will be validated"
 msgstr "Plugin wird validiert"
 
-#: mail-on-update.php:347
+#: mail-on-update.php:449
 msgid "Plugin will not be validated"
 msgstr "Plugin wird nicht validiert"
+
+#~ msgid "Recipient of all notifications: "
+#~ msgstr "Empf&auml;nger der Benachrichtigungen:"
 
 #~ msgid "List of alternative recipients"
 #~ msgstr "Liste alternativer Empf&auml;nger:"
@@ -208,26 +244,22 @@ msgstr "Plugin wird nicht validiert"
 #~ msgstr "Bisher keine detaillierte Statistik."
 
 #~ msgid "%s Spambot send the default author and/or comment field."
-
 #~ msgid_plural "%s Spambots send the default author and/or comment field."
 #~ msgstr[0] "%s Spambot sendete das Standard-Autor- und/oder Kommentarfeld."
 #~ msgstr[1] "%s Spambots sendeten das Standard-Autor- und/oder Kommentarfeld."
 
 #~ msgid "%s Spambot did not send the hidden field."
-
 #~ msgid_plural "%s Spambots did not send the hidden field."
 #~ msgstr[0] "%s Spambot sendete kein verstecktes Feld."
 #~ msgstr[1] "%s Spambots sendeten kein verstecktes Feld."
 
 #~ msgid "%s Spambot send the hidden field, but filled it out."
-
 #~ msgid_plural "%s Spambots send the hidden field, but filled it out."
 #~ msgstr[0] "%s Spambot sendete das versteckte Feld, aber f&uuml;llte es aus."
 #~ msgstr[1] ""
 #~ "%s Spambots sendeten das versteckte Feld, aber f&uuml;llten es aus."
 
 #~ msgid "%s Spambot was blocked because of a saved IP."
-
 #~ msgid_plural "%s Spambots was blocked because of a saved IP."
 #~ msgstr[0] ""
 #~ "%s Spambot wurde aufgrund einer gespeicherten IP-Adresse blockiert."
@@ -298,7 +330,6 @@ msgstr "Plugin wird nicht validiert"
 #~ msgstr "Yawasp Statistik"
 
 #~ msgid " has blocked %s birdbrained Spambot since its last activation."
-
 #~ msgid_plural ""
 #~ " has blocked %s birdbrained Spambots since its last activation."
 #~ msgstr[0] ""
