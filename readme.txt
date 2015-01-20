@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: kubi23
 Tested up to: 4.1.0
-Stable tag: 5.3.0
+Stable tag: 5.3.1
 Requires at least: 3.0
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions
 
@@ -9,13 +9,14 @@ Sends an e-Mail to one or multiple administrators if new updates of plugins are 
 
 == Description ==
  
-Since WordPress Version 2.5, WordPress automaticly checks if a new update for an installed plugin is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via E-mail when a new update is available.
-It uses the build-in update function to periodicly check for new versions at the wordpress plugin directory. If a new version is available, either a single or multiple administrators will recieve an e-mail, informing them which plugins needs to be updated.
+Since WordPress Version 2.5, WordPress automaticly checks if a new update for an installed plugin is available. However, you still have to check your wp-admin to see the notification. This plugin informs you via e-Mail when a new update is available.
+It uses the wordpress build-in update function to periodicly check for new versions at the wordpress plugin directory. If a new version is available, either a single or multiple administrators will recieve an e-mail, informing them which plugins needs to be updated.
 
 = Available Languages  =
 
 * German
 * English
+* Russian
 
 == Installation ==
 
@@ -26,14 +27,12 @@ It uses the build-in update function to periodicly check for new versions at the
 
 Done.
 
-== Frequently Asked Questions ==
-
-= I don't recieve any E-mails, although updates are available =
-
-Check you Admin E-mail settings under Settings -> E-mail. It has to be a valid E-mail-adress. Furthermore the Plugin is only called when the blog is accesed. So your Blog needs at least one click.
- 
 
 == Changelog ==
+
+= 5.3.1 =
+* Replaced JQuery with compliant WordPress version
+* (Re-)Added russian translation (Thanks to Flector)
 
 = 5.3.0 =
 * Added option to select multiple admin recipients

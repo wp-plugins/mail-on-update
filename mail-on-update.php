@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an eMail notification to one or multiple eMail addresses if new versions of plugins are available.
-Version: 5.3.0
+Version: 5.3.1
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://svenkubiak.de
 License: GPLv2 or later
@@ -321,29 +321,27 @@ if (!class_exists('MailOnUpdate'))
 			
 			?>
 
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 			<script type="text/javascript">  
-			$( document ).ready(function() {
-				 $('#remove').click(function() {  
-					var value = $('#select1 option:selected').val();
-					if ($("#select2 option[value='" + value + "']").length <= 0) {
-						return !$('#select1 option:selected').remove().appendTo('#select2'); 
+			jQuery( document ).ready(function() {
+				 jQuery('#remove').click(function() {  
+					var value = jQuery('#select1 option:selected').val();
+					if (jQuery("#select2 option[value='" + value + "']").length <= 0) {
+						return !jQuery('#select1 option:selected').remove().appendTo('#select2'); 
 					} else {
-						return !$('#select1 option:selected').remove(); 
+						return !jQuery('#select1 option:selected').remove(); 
 					} 
 				});  
-			  	$('#add').click(function() {
-					var value = $('#select2 option:selected').val();
-					if ($("#select1 option[value='" + value + "']").length <= 0) {
-						return !$('#select2 option:selected').remove().appendTo('#select1'); 
+			  	jQuery('#add').click(function() {
+					var value = jQuery('#select2 option:selected').val();
+					if (jQuery("#select1 option[value='" + value + "']").length <= 0) {
+						return !jQuery('#select2 option:selected').remove().appendTo('#select1'); 
 					} else {
-						return !$('#select2 option:selected').remove(); 
+						return !jQuery('#select2 option:selected').remove(); 
 					}  
 				});
-				
-				$('#mailonupdate-conf').submit(function() {  
-					$('#select1 option').each(function(i) {  
-						$(this).attr("selected", "selected");  
+				jQuery('#mailonupdate-conf').submit(function() {  
+					jQuery('#select1 option').each(function(i) {  
+						jQuery(this).attr("selected", "selected");  
 					});  
 				});
 			});
