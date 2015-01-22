@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MailOnUpdate-ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:49+0300\n"
+"POT-Creation-Date: 2015-01-22 07:45+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Flector <rlector@gmail.com>\n"
 "Language-Team: WordpressPlugins.ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __\n"
 "X-Poedit-Basepath: ./\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: mail-on-update.php:111
@@ -75,31 +75,31 @@ msgstr "Извините, но у вас нет разрешения на изм
 msgid "Mail On Update settings succsesfully saved."
 msgstr "Настройки Mail On Update успешно записаны."
 
-#: mail-on-update.php:353
+#: mail-on-update.php:351
 msgid "Mail On Update Settings"
 msgstr "Mail On Update Настройки"
 
-#: mail-on-update.php:356
+#: mail-on-update.php:354
 msgid "Notification settings"
 msgstr "Настройки уведомлений"
 
-#: mail-on-update.php:361
+#: mail-on-update.php:359
 msgid "Selected recipients"
 msgstr "Выбранные получатели"
 
-#: mail-on-update.php:374
+#: mail-on-update.php:372
 msgid "Remove"
 msgstr "Удалить"
 
-#: mail-on-update.php:378
+#: mail-on-update.php:376
 msgid "Available recipients"
 msgstr "Доступные получатели"
 
-#: mail-on-update.php:391
+#: mail-on-update.php:389
 msgid "Add"
 msgstr "Добавить"
 
-#: mail-on-update.php:394
+#: mail-on-update.php:392
 msgid ""
 "You can select multiple administrative users as a recipient. If no recipient "
 "is selected, the notification will be send to:"
@@ -108,67 +108,70 @@ msgstr ""
 "уведомлений. Если получатель не выбран, то уведомление будет отослано на "
 "административный контакт по умолчанию:"
 
-#: mail-on-update.php:398
-msgid "Send only one notification per Update"
-msgstr "Отсылать только одно уведомление (не повторять email)"
+#: mail-on-update.php:396
+msgid "Send only one notification per update"
+msgstr ""
 
-#: mail-on-update.php:402 mail-on-update.php:433
+#: mail-on-update.php:400 mail-on-update.php:431
 msgid "Save"
 msgstr "Сохранить"
 
-#: mail-on-update.php:409
+#: mail-on-update.php:407
 msgid "Filters"
 msgstr "Фильтры"
 
-#: mail-on-update.php:416
+#: mail-on-update.php:414
 msgid "* A plugin is matched if the filter is a substring"
 msgstr ""
 "* Плагин выбран, если в его названии есть слова из фильтра (фильтр \"WP-\" "
 "выберет все плагины, в названии которых есть \"WP-\")"
 
-#: mail-on-update.php:417
+#: mail-on-update.php:415
 msgid "* A filter has to appear on a single line"
 msgstr "* Каждый фильтр должен быть на новой строке"
 
-#: mail-on-update.php:418
+#: mail-on-update.php:416
 msgid "* A filter is not case sensetive"
 msgstr "* Фильтры нечувствительны к регистру"
 
-#: mail-on-update.php:419
+#: mail-on-update.php:417
 msgid "* A filter is considered as a string and no regexp"
 msgstr "* Фильтры считаются строкой, а не регулярным выражением"
 
-#: mail-on-update.php:420
+#: mail-on-update.php:418
 msgid "* A filter with \"-\" at the end is not considered"
 msgstr "* Фильтры с \"-\" в конце не будут использоваться"
 
-#: mail-on-update.php:426
+#: mail-on-update.php:424
 msgid "Don't filter plugins"
 msgstr "Не использовать фильтры"
 
-#: mail-on-update.php:427
+#: mail-on-update.php:425
 msgid "Blacklist filter (exclude plugins)"
 msgstr "Черный cписок (исключить указанные плагины)"
 
-#: mail-on-update.php:428
+#: mail-on-update.php:426
 msgid "Whitelist filter (include plugins)"
 msgstr "Белый список (включить указанные плагины)"
 
-#: mail-on-update.php:429
+#: mail-on-update.php:427
 msgid "Don't validate inactive plugins"
 msgstr "Не проверять неактивные плагины"
 
-#: mail-on-update.php:440
+#: mail-on-update.php:438
 msgid "Plugins to validate"
 msgstr "Плагины для проверки"
 
-#: mail-on-update.php:448
+#: mail-on-update.php:446
 msgid "Plugin will be validated"
 msgstr "Плагин будет проверяться"
 
-#: mail-on-update.php:449
+#: mail-on-update.php:447
 msgid "Plugin will not be validated"
 msgstr "Плагин не будет проверяться"
+
+#~ msgid "Send only one notification per Update"
+#~ msgstr "Отсылать только одно уведомление (не повторять email)"
 
 #~ msgid "List of alternative recipients"
 #~ msgstr "Список альтернативных получателей"

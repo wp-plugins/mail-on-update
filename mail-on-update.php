@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an eMail notification to one or multiple eMail addresses if new versions of plugins are available.
-Version: 5.3.1
+Version: 5.3.2
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://svenkubiak.de
 License: GPLv2 or later
@@ -166,7 +166,7 @@ if (!class_exists('MailOnUpdate'))
 					$message.= "\n\n".__('There are also updates available for the plugins below. However, these plugins are of no concern for this notifier and the information is just for completeness.', 'mail-on-update')."\n".$pluginNotVaildated;
 				};
 				
-				$message .= "\n\n---\nIf this plugin is useful to you, you can support further development by using Flattr. Thank you!\nhttps://flattr.com/thing/2511359/WordPress-Mail-On-Update-WordPress-Plugins";
+				$message .= "\n\n---\nIf this plugin is useful to you, you can support it with Flattr.\nhttps://flattr.com/thing/2511359/WordPress-Mail-On-Update-WordPress-Plugins";
 				//set mail header for notification message
 				$sender 	= 'wordpress@' . preg_replace('#^www\.#', '', strtolower($_SERVER['SERVER_NAME']));
 				$from 		= "From: \"$sender\" <$sender>";	
@@ -374,7 +374,7 @@ if (!class_exists('MailOnUpdate'))
 								</tr>
 						    	<tr>
 									<td><?php echo __('Available recipients', 'mail-on-update'); ?></td>
-								</tr>								
+								</tr>
 								<tr>
 									<td>
 										<select style="width: 100%" multiple id="select2">
@@ -390,10 +390,10 @@ if (!class_exists('MailOnUpdate'))
 								</tr>
 						    	<tr>
 									<td><?php echo __('You can select multiple administrative users as a recipient. If no recipient is selected, the notification will be send to:', 'mail-on-update'); ?>&nbsp;<?php echo get_option("admin_email") ?></td>
-								</tr>								
+								</tr>
 								<tr>
 									<td valign="top">
-		                			<label><input type="checkbox" name="mailonupdate_singlenotification" value="checked" <?php print $this->mou_singlenotification; ?> /> <?php echo __('Send only one notification per Update', 'mail-on-update'); ?></label>						
+		                			<label><input type="checkbox" name="mailonupdate_singlenotification" value="checked" <?php print $this->mou_singlenotification; ?> /> <?php echo __('Send only one notification per update', 'mail-on-update'); ?></label>						
 									</td>
 								</tr>
 							</table>
@@ -414,8 +414,8 @@ if (!class_exists('MailOnUpdate'))
 									<?php echo __('* A plugin is matched if the filter is a substring', 'mail-on-update'); ?><br />
 									<?php echo __('* A filter has to appear on a single line', 'mail-on-update'); ?><br />
 									<?php echo __('* A filter is not case sensetive', 'mail-on-update'); ?><br />
-									<?php echo __('* A filter is considered as a string and no regexp', 'mail-on-update'); ?><br />		
-									<?php echo __('* A filter with "-" at the end is not considered', 'mail-on-update'); ?>								
+									<?php echo __('* A filter is considered as a string and no regexp', 'mail-on-update'); ?><br />
+									<?php echo __('* A filter with "-" at the end is not considered', 'mail-on-update'); ?>
 									<?php $rval = $this->rbc('mailonupdate_filtermethod','nolist blacklist whitelist','nolist'); ?>
 									</td> 
 								</tr>
@@ -444,7 +444,7 @@ if (!class_exists('MailOnUpdate'))
 								<tr>
 									<td>
 									[x] <?php echo __('Plugin will be validated', 'mail-on-update'); ?><br />
-									[ ] <?php echo __('Plugin will not be validated', 'mail-on-update'); ?><br />							
+									[ ] <?php echo __('Plugin will not be validated', 'mail-on-update'); ?><br />
 									</td>
 								</tr>
 							</table>			
