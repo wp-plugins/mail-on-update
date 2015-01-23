@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: kubi23
 Tested up to: 4.1.0
-Stable tag: 5.3.2
+Stable tag: 5.3.3
 Requires at least: 3.0
 Tags: wordpress, plugin, mail, e-mail, notification, update, updates, notifications, mail-on-update, email, plugins, inform, version, versions
 
@@ -29,6 +29,9 @@ Done.
 
 
 == Changelog ==
+
+= 5.3.3 =
+* Fixed some PHP notices
 
 = 5.3.2 =
 * Fixed typo in german translation

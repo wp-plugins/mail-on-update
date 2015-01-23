@@ -3,7 +3,7 @@
 Plugin Name: Mail On Update
 Plugin URI: http://www.svenkubiak.de/mail-on-update
 Description: Sends an eMail notification to one or multiple eMail addresses if new versions of plugins are available.
-Version: 5.3.2
+Version: 5.3.3
 Author: Sven Kubiak, Matthias Kindler
 Author URI: http://svenkubiak.de
 License: GPLv2 or later
@@ -203,19 +203,31 @@ if (!class_exists('MailOnUpdate'))
 		}
 	
 		function rbc($option,$state_list,$default) {
-				$checked = 'checked="checked"';
-				$state = $this->mou_filtermethod;
-				$hit = false;
+			$checked = 'checked="checked"';
+			$state = $this->mou_filtermethod;
+			$hit = false;
 				
-				foreach (explode(' ',$state_list) as $istate){
-					if ($state==$istate){
-						$res[$istate] = $checked;
-						$hit=true;
-						$break;
-					}
+			foreach (explode(' ',$state_list) as $istate){
+				if ($state==$istate){
+					$res[$istate] = $checked;
+					$hit=true;
+					$break;
 				}
+			}
 			
-				(!$hit) ? $res["$default"] = $checked : false;
+			(!$hit) ? $res["$default"] = $checked : false;	
+			
+			if ( !array_key_exists("blacklist",$res) ) {
+				$res["blacklist"] = "";
+			}
+			
+			if ( !array_key_exists("whitelist",$res) ) {
+				$res["whitelist"] = "";
+			}
+			
+			if ( !array_key_exists("nolist",$res) ) {
+				$res["nolist"] = "";
+			}
 			
 			return $res;
 		}
@@ -311,10 +323,11 @@ if (!class_exists('MailOnUpdate'))
 
 			$mailtos = explode ( "," , $this->mou_mailto );
 			$users = array();
+			$exclude = "";
 			foreach ($mailtos as $mailto) {
 				$user = get_user_by( 'email', $mailto );
-				$users [] = $user;
 				$exclude .= $user->ID . ",";
+				$users [] = $user;
 			}
 			$administrators = get_users( 'role=administrator&exclude='.$exclude );
 			$nonce = wp_create_nonce('mailonupdate-nonce');
