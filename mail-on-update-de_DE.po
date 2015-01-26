@@ -100,7 +100,7 @@ msgstr "Verf&uuml;gbare Empf&auml;nger"
 
 #: mail-on-update.php:389
 msgid "Add"
-msgstr "Hinzuf&ouml;gen"
+msgstr "Hinzuf&uuml;gen"
 
 #: mail-on-update.php:392
 msgid ""
